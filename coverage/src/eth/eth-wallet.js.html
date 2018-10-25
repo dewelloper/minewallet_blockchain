@@ -1,0 +1,1499 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src\eth\eth-wallet.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">src/eth/</a> eth-wallet.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">58.66% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>166/283</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">48.06% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>62/129</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">51.16% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>44/86</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">63.75% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>153/240</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line medium'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479</td><td class="line-coverage quiet"><span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">55×</span>
+<span class="cline-any cline-yes">55×</span>
+<span class="cline-any cline-yes">55×</span>
+<span class="cline-any cline-yes">55×</span>
+<span class="cline-any cline-yes">55×</span>
+<span class="cline-any cline-yes">55×</span>
+<span class="cline-any cline-yes">55×</span>
+<span class="cline-any cline-yes">55×</span>
+<span class="cline-any cline-yes">55×</span>
+<span class="cline-any cline-yes">55×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">30×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">25×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">376×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">299×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">239×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14×</span>
+<span class="cline-any cline-yes">14×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">68×</span>
+<span class="cline-any cline-yes">68×</span>
+<span class="cline-any cline-yes">68×</span>
+<span class="cline-any cline-yes">68×</span>
+<span class="cline-any cline-yes">68×</span>
+<span class="cline-any cline-yes">68×</span>
+<span class="cline-any cline-yes">68×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">81×</span>
+<span class="cline-any cline-yes">81×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">57×</span>
+<span class="cline-any cline-yes">56×</span>
+<span class="cline-any cline-yes">56×</span>
+<span class="cline-any cline-yes">180×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">181×</span>
+<span class="cline-any cline-yes">220×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">72×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">72×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">71×</span>
+<span class="cline-any cline-yes">70×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">70×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">54×</span>
+<span class="cline-any cline-yes">54×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const crypto = require('crypto');
+const WebSocket = require('ws');
+const ethUtil = require('ethereumjs-util');
+const WalletCrypto = require('../wallet-crypto');
+const EthHd = require('ethereumjs-wallet/hdkey');
+const { construct, has } = require('ramda');
+const { isPositiveNumber, isHex, asyncOnce, dedup, unsortedEquals, isNumber } = require('../helpers');
+const API = require('../api');
+const EthTxBuilder = require('./eth-tx-builder');
+const EthAccount = require('./eth-account');
+const EthSocket = require('./eth-socket');
+const EthWalletTx = require('./eth-wallet-tx');
+&nbsp;
+const objHasKeys = (obj, keys) =&gt; keys.every(k =&gt; has(k, obj));
+&nbsp;
+const METADATA_TYPE_ETH = 5;
+const DERIVATION_PATH = "m/44'/60'/0'/0";
+&nbsp;
+class EthWallet {
+  constructor (wallet, metadata) {
+    this._wallet = wallet;
+    this._metadata = metadata;
+    this._hasSeen = false;
+    this._defaultAccountIdx = 0;
+    this._accounts = [];
+    this._txNotes = {};
+    this._latestBlock = null;
+    this._lastTx = null;
+    this._lastTxTimestamp = null;
+    this.sync = asyncOnce(this.sync.bind(this), 250);
+  }
+&nbsp;
+  get wei () {
+    return this.defaultAccount ? this.defaultAccount.wei : <span class="branch-1 cbranch-no" title="branch not covered" >null;</span>
+  }
+&nbsp;
+  get balance () {
+    return this.defaultAccount ? this.defaultAccount.balance : <span class="branch-1 cbranch-no" title="branch not covered" >null;</span>
+  }
+&nbsp;
+  get hasSeen () <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >    return this._hasSeen;</span>
+  }
+&nbsp;
+  get defaultAccountIdx () {
+    return this._defaultAccountIdx;
+  }
+&nbsp;
+  get defaultAccount () {
+    return this.accounts[this.defaultAccountIdx];
+  }
+&nbsp;
+  get accounts () {
+    return this._accounts;
+  }
+&nbsp;
+  get legacyAccount () {
+    return this._legacyAccount;
+  }
+&nbsp;
+  get activeAccounts () {
+    return this.accounts.filter(a =&gt; !a.archived);
+  }
+&nbsp;
+  get activeAccountsWithLegacy () {
+    return this.legacyAccount
+      ? <span class="branch-0 cbranch-no" title="branch not covered" >this.activeAccounts.concat(this.legacyAccount)</span>
+      : this.activeAccounts;
+  }
+&nbsp;
+  get latestBlock () {
+    return this._latestBlock;
+  }
+&nbsp;
+  get lastTx () <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >    return this._lastTx;</span>
+  }
+&nbsp;
+  get lastTxTimestamp () <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >    return this._lastTxTimestamp;</span>
+  }
+&nbsp;
+  get defaults () {
+    return {
+      GAS_PRICE: EthTxBuilder.GAS_PRICE,
+      GAS_LIMIT: EthTxBuilder.GAS_LIMIT
+    };
+  }
+&nbsp;
+  get txs () <span class="fstat-no" title="function not covered" >{</span>
+    let accounts = <span class="cstat-no" title="statement not covered" >this.activeAccountsWithLegacy;</span>
+<span class="cstat-no" title="statement not covered" >    return dedup(accounts.map(a =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >a.txs)</span></span>, 'hash').sort(EthWalletTx.txTimeSort);</span>
+  }
+&nbsp;
+  getApproximateBalance () {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (!this.defaultAccount &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >!this.legacyAccount)</span> <span class="cstat-no" title="statement not covered" >return null;</span>
+    let balance = 0;
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (this.defaultAccount) {
+      balance += parseFloat(this.defaultAccount.getApproximateBalance());
+    }
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (this.legacyAccount) {
+<span class="cstat-no" title="statement not covered" >      balance += parseFloat(this.legacyAccount.getApproximateBalance());</span>
+    }
+    return balance.toFixed(8);
+  }
+&nbsp;
+  getAccount (index) {
+    let account = this.accounts[index];
+    if (!account) throw new Error(`Account ${index} does not exist`);
+    return account;
+  }
+&nbsp;
+  setAccountLabel (index, label) {
+    this.getAccount(index).label = label;
+    this.sync();
+  }
+&nbsp;
+  archiveAccount (account) {
+    if (account === this.defaultAccount) {
+      throw new Error('Cannot archive default account');
+    }
+    account.archived = true;
+    this.sync();
+  }
+&nbsp;
+  unarchiveAccount (account) {
+    account.archived = false;
+    this._socket.subscribeToAccount(this, account);
+    this.sync();
+  }
+&nbsp;
+  createAccount (label, secPass) {
+    let accountNode = this.deriveChild(this.accounts.length, secPass);
+    let account = EthAccount.fromWallet(accountNode.getWallet());
+    account.label = label || EthAccount.defaultLabel(this.accounts.length);
+    account.markAsCorrect();
+    this._accounts.push(account);
+    this._socket.subscribeToAccount(this, account, this.legacyAccount);
+    return this.sync();
+  }
+&nbsp;
+  getTxNote (hash) {
+    return this._txNotes[hash] || null;
+  }
+&nbsp;
+  setTxNote (hash, note) {
+    if (note === null || note === '') {
+      delete this._txNotes[hash];
+    } else if (typeof note !== 'string') {
+      throw new Error('setTxNote note must be a string or null');
+    } else {
+      this._txNotes[hash] = note;
+    }
+    this.updateTxs();
+    this.sync();
+  }
+&nbsp;
+  setLastTx (tx) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >    this._lastTx = tx;</span>
+<span class="cstat-no" title="statement not covered" >    this._lastTxTimestamp = new Date().getTime();</span>
+<span class="cstat-no" title="statement not covered" >    this.sync();</span>
+  }
+&nbsp;
+  setHasSeen (hasSeen) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >    this._hasSeen = hasSeen;</span>
+<span class="cstat-no" title="statement not covered" >    this.sync();</span>
+  }
+&nbsp;
+  setDefaultAccountIndex (i) {
+    if (!isPositiveNumber(i)) {
+      throw new Error('Account index must be a number &gt;= 0');
+    } else if (i &gt;= this.accounts.length) {
+      throw new Error('Account index out of bounds');
+    } else if (this._defaultAccountIdx === i) {
+      return;
+    } else {
+      this._defaultAccountIdx = i;
+      this.sync();
+    }
+  }
+&nbsp;
+  fetch () <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >    return this._metadata.fetch().then((data) =&gt; <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >      if (data) {</span>
+        let constructAccount = <span class="cstat-no" title="statement not covered" >construct(EthAccount);</span>
+        let { ethereum } = <span class="cstat-no" title="statement not covered" >data;</span>
+<span class="cstat-no" title="statement not covered" >        this._hasSeen = ethereum.has_seen;</span>
+<span class="cstat-no" title="statement not covered" >        this._defaultAccountIdx = ethereum.default_account_idx;</span>
+<span class="cstat-no" title="statement not covered" >        this._accounts = ethereum.accounts.map(constructAccount);</span>
+<span class="cstat-no" title="statement not covered" >        this._txNotes = ethereum.tx_notes || {};</span>
+<span class="cstat-no" title="statement not covered" >        this._lastTx = ethereum.last_tx;</span>
+<span class="cstat-no" title="statement not covered" >        this._lastTxTimestamp = ethereum.last_tx_timestamp;</span>
+<span class="cstat-no" title="statement not covered" >        if (ethereum.legacy_account) {</span>
+<span class="cstat-no" title="statement not covered" >          this._legacyAccount = constructAccount(ethereum.legacy_account);</span>
+        }
+      }
+    });
+  }
+&nbsp;
+  sync () {
+    let data = { ethereum: this };
+    return this._metadata.update(data);
+  }
+&nbsp;
+  toJSON () {
+    return {
+      has_seen: this._hasSeen,
+      default_account_idx: this._defaultAccountIdx,
+      accounts: this._accounts,
+      legacy_account: this._legacyAccount,
+      tx_notes: this._txNotes,
+      last_tx: this._lastTx,
+      last_tx_timestamp: this._lastTxTimestamp
+    };
+  }
+&nbsp;
+  fetchHistory () <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >    return Promise.all([this.fetchBalance(), this.fetchTransactions()])</span>
+      .then(() =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >this.getLatestBlock())</span></span>;
+  }
+&nbsp;
+  fetchBalance () <span class="fstat-no" title="function not covered" >{</span>
+    let accounts = <span class="cstat-no" title="statement not covered" >this.activeAccountsWithLegacy;</span>
+<span class="cstat-no" title="statement not covered" >    if (!accounts.length) <span class="cstat-no" title="statement not covered" >return Promise.resolve();</span></span>
+    let addresses = <span class="cstat-no" title="statement not covered" >accounts.map(a =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >a.address)</span></span>;</span>
+<span class="cstat-no" title="statement not covered" >    return fetch(`${API.API_ROOT_URL}eth/account/${addresses.join()}/balance`)</span>
+      .then(r =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >r.status === 200 ? r.json() : r.json().then(e =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >Promise.reject(e))</span></span>)</span></span>
+      .then(data =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >accounts.forEach(a =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >a.setData(data[a.address]))</span></span>)</span></span>;
+  }
+&nbsp;
+  fetchTransactions () <span class="fstat-no" title="function not covered" >{</span>
+    let accounts = <span class="cstat-no" title="statement not covered" >this.activeAccountsWithLegacy;</span>
+<span class="cstat-no" title="statement not covered" >    if (!accounts.length) <span class="cstat-no" title="statement not covered" >return Promise.resolve();</span></span>
+    let addresses = <span class="cstat-no" title="statement not covered" >accounts.map(a =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >a.address)</span></span>;</span>
+<span class="cstat-no" title="statement not covered" >    return fetch(`${API.API_ROOT_URL}eth/account/${addresses.join()}`)</span>
+      .then(r =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >r.status === 200 ? r.json() : r.json().then(e =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >Promise.reject(e))</span></span>)</span></span>
+      .then(data =&gt; <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >        accounts.forEach(a =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >a.setTransactions(data[a.address]))</span></span>;</span>
+<span class="cstat-no" title="statement not covered" >        this.updateTxs();</span>
+      });
+  }
+&nbsp;
+  fetchFees () <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >    return EthTxBuilder.fetchFees();</span>
+  }
+&nbsp;
+  isContractAddress (address) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >    return fetch(`${API.API_ROOT_URL}eth/account/${address}/isContract`)</span>
+      .then(r =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >r.status === 200 ? r.json() : r.json().then(e =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >Promise.reject(e))</span></span>)</span></span>
+      .then(({ contract }) =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >contract)</span></span>;
+  }
+&nbsp;
+  getLatestBlock () <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >    return fetch(`${API.API_ROOT_URL}eth/latestblock`)</span>
+      .then(r =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >r.status === 200 ? r.json() : r.json().then(e =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >Promise.reject(e))</span></span>)</span></span>
+      .then(block =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >this.setLatestBlock(block.number))</span></span>;
+  }
+&nbsp;
+  setLatestBlock (blockNumber) {
+    this._latestBlock = blockNumber;
+    this.updateTxs();
+  }
+&nbsp;
+  connect (wsUrl) {
+    if (this._socket) return;
+    this._socket = new EthSocket(wsUrl, WebSocket);
+    this._socket.on('open', () =&gt; this.setSocketHandlers());
+    this._socket.on('close', () =&gt; this.setSocketHandlers());
+  }
+&nbsp;
+  setSocketHandlers () {
+    this._socket.subscribeToBlocks(this);
+    this.activeAccounts.forEach(a =&gt; this._socket.subscribeToAccount(this, a, this.legacyAccount));
+  }
+&nbsp;
+  updateTxs () {
+    this.activeAccountsWithLegacy.forEach(a =&gt; a.updateTxs(this));
+  }
+&nbsp;
+  getPrivateKeyForAccount (account, secPass) {
+    let index = this.accounts.indexOf(account);
+    let wallet = this.deriveChild(index, secPass).getWallet();
+    let privateKey = wallet.getPrivateKey();
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (!account.isCorrectPrivateKey(privateKey)) {
+<span class="cstat-no" title="statement not covered" >      throw new Error('Failed to derive correct private key');</span>
+    }
+    return privateKey;
+  }
+&nbsp;
+  deriveChild (index, secPass) {
+    let w = this._wallet;
+    let cipher;
+    if (w.isDoubleEncrypted) {
+      if (!secPass) throw new Error('Second password required to derive ethereum wallet');
+      else cipher = w.createCipher(secPass);
+    }
+    let masterHdNode = w.hdwallet.getMasterHDNode(cipher);
+    let accountNode = masterHdNode
+      .deriveHardened(44)
+      .deriveHardened(60)
+      .deriveHardened(0)
+      .derive(0)
+      .derive(index);
+    return EthHd.fromExtendedKey(accountNode.toBase58());
+  }
+&nbsp;
+  /* start legacy */
+&nbsp;
+  getPrivateKeyForLegacyAccount (secPass) {
+    let account = this._legacyAccount;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (!account) {
+<span class="cstat-no" title="statement not covered" >      throw new Error('Wallet does not contain a beta account');</span>
+    }
+    let wallet = this.deriveChildLegacy(0, secPass).getWallet();
+    let privateKey = wallet.getPrivateKey();
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (!account.isCorrectPrivateKey(privateKey)) {
+<span class="cstat-no" title="statement not covered" >      throw new Error('Failed to derive correct private key');</span>
+    }
+    return privateKey;
+  }
+&nbsp;
+  deriveChildLegacy (index, secPass) {
+    let w = this._wallet;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (w.isDoubleEncrypted &amp;&amp; !secPass) {
+<span class="cstat-no" title="statement not covered" >      throw new Error('Second password required to derive ethereum wallet');</span>
+    }
+    let getSeedHex = w.isDoubleEncrypted ? w.createCipher(secPass, 'dec') : x =&gt; x;
+    let seed = getSeedHex(w.hdwallet.seedHex);
+    return EthHd.fromMasterSeed(seed).derivePath(DERIVATION_PATH).deriveChild(index);
+  }
+&nbsp;
+  needsTransitionFromLegacy () <span class="fstat-no" title="function not covered" >{</span>
+    let shouldSweepAccount = <span class="cstat-no" title="statement not covered" >(account) =&gt; (</span>
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >      account.fetchBalance()</span></span>
+        .then(() =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >account.getAvailableBalance())</span></span>
+        .then(({ amount }) =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >amount &gt; 0)</span></span>
+    );
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (this.defaultAccount &amp;&amp; !this.defaultAccount.isCorrect) {</span>
+      /*
+        If user has an eth account and the account is not marked as
+        correct, check if they should sweep.
+      */
+<span class="cstat-no" title="statement not covered" >      return shouldSweepAccount(this.defaultAccount);</span>
+    } else <span class="cstat-no" title="statement not covered" >if (this.legacyAccount) {</span>
+      /*
+        If user has a legacy eth account saved, we should still check
+        if the account needs to be swept in case funds were received after
+        the previous transition.
+      */
+<span class="cstat-no" title="statement not covered" >      return shouldSweepAccount(this.legacyAccount);</span>
+    } else {
+      /*
+        Default account is up to date and there is no legacy account,
+        do nothing.
+      */
+<span class="cstat-no" title="statement not covered" >      return Promise.resolve(false);</span>
+    }
+  }
+&nbsp;
+  transitionFromLegacy () <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >    if (this.defaultAccount &amp;&amp; !this.defaultAccount.isCorrect) {</span>
+<span class="cstat-no" title="statement not covered" >      this._legacyAccount = this.getAccount(0);</span>
+<span class="cstat-no" title="statement not covered" >      this._accounts = [];</span>
+<span class="cstat-no" title="statement not covered" >      return this.sync();</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      return Promise.resolve();</span>
+    }
+  }
+&nbsp;
+  sweepLegacyAccount (secPass, { gasPrice = EthTxBuilder.GAS_PRICE, gasLimit = EthTxBuilder.GAS_LIMIT } = {}) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >    if (!this.legacyAccount) {</span>
+<span class="cstat-no" title="statement not covered" >      return Promise.reject(new Error('Must transition from Beta account first'));</span>
+    }
+&nbsp;
+    let defaultAccountP = <span class="cstat-no" title="statement not covered" >this.defaultAccount == null</span>
+      ? Promise.resolve().then(() =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >this.createAccount(void 0, secPass))</span></span>
+      : Promise.resolve();
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return defaultAccountP</span>
+      .then(() =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >this.legacyAccount.getAvailableBalance())</span></span>
+      .then(({ amount }) =&gt; <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >        if (amount &gt; 0) {</span>
+          let payment = <span class="cstat-no" title="statement not covered" >this.legacyAccount.createPayment();</span>
+          let privateKey = <span class="cstat-no" title="statement not covered" >this.getPrivateKeyForLegacyAccount(secPass);</span>
+<span class="cstat-no" title="statement not covered" >          payment.setGasPrice(gasPrice);</span>
+<span class="cstat-no" title="statement not covered" >          payment.setGasLimit(gasLimit);</span>
+<span class="cstat-no" title="statement not covered" >          payment.setTo(this.defaultAccount.address);</span>
+<span class="cstat-no" title="statement not covered" >          payment.setSweep();</span>
+<span class="cstat-no" title="statement not covered" >          payment.sign(privateKey);</span>
+<span class="cstat-no" title="statement not covered" >          return payment.publish();</span>
+        } else {
+<span class="cstat-no" title="statement not covered" >          throw new Error('No funds in account to sweep');</span>
+        }
+      });
+  }
+&nbsp;
+  __transitionToLegacy (secPass) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >    delete this._legacyAccount;</span>
+    let accountNode = <span class="cstat-no" title="statement not covered" >this.deriveChildLegacy(0, secPass);</span>
+    let account = <span class="cstat-no" title="statement not covered" >EthAccount.fromWallet(accountNode.getWallet());</span>
+<span class="cstat-no" title="statement not covered" >    account.label = EthAccount.defaultLabel(0);</span>
+<span class="cstat-no" title="statement not covered" >    this._accounts = [account];</span>
+<span class="cstat-no" title="statement not covered" >    this._socket.subscribeToAccount(this, account);</span>
+<span class="cstat-no" title="statement not covered" >    return this.sync();</span>
+  }
+&nbsp;
+  /* end legacy */
+&nbsp;
+  /* start mew */
+&nbsp;
+  decipherBuffer (decipher, data) {
+    return Buffer.concat([decipher.update(data), decipher.final()]);
+  }
+&nbsp;
+  extractSeed (derivedKey, json) {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (!Buffer.isBuffer(derivedKey)) { <span class="cstat-no" title="statement not covered" >throw new Error('Expected key to be a Buffer'); </span>}
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (typeof json.crypto !== 'object') { <span class="cstat-no" title="statement not covered" >throw new Error('Expected crypto to be an object'); </span>}
+    var ciphertext = new Buffer(json.crypto.ciphertext, 'hex');
+    var mac = ethUtil.sha3(Buffer.concat([derivedKey.slice(16, 32), ciphertext]));
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (mac.toString('hex') !== json.crypto.mac) { <span class="cstat-no" title="statement not covered" >throw new Error('Key derivation failed - possibly wrong passphrase'); </span>}
+&nbsp;
+    var decipher = crypto.createDecipheriv(json.crypto.cipher, derivedKey.slice(0, 16), new Buffer(json.crypto.cipherparams.iv, 'hex'));
+    var seed = this.decipherBuffer(decipher, ciphertext, 'hex');
+    while (seed.length &lt; 32) {
+      var nullBuff = new Buffer([0x00]);
+      seed = Buffer.concat([nullBuff, seed]);
+    }
+    return seed;
+  }
+&nbsp;
+  fromMew (json, password) {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (typeof json !== 'object') { <span class="cstat-no" title="statement not covered" >throw new Error('Not a supported file type'); </span>}
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (isNaN(json.version)) { <span class="cstat-no" title="statement not covered" >throw new Error('Not a supported wallet. Please use a valid wallet version.'); </span>}
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (!objHasKeys(json, ['crypto', 'id', 'version'])) { <span class="cstat-no" title="statement not covered" >throw new Error('File is malformatted'); </span>}
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (!objHasKeys(json.crypto, ['cipher', 'cipherparams', 'ciphertext', 'kdf', 'kdfparams', 'mac'])) { <span class="cstat-no" title="statement not covered" >throw new Error('Crypto is not valid'); </span>}
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (!isHex(json.crypto.cipherparams.iv)) { <span class="cstat-no" title="statement not covered" >throw new Error('Not a supported param: cipherparams.iv'); </span>}
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (!isHex(json.crypto.ciphertext)) { <span class="cstat-no" title="statement not covered" >throw new Error('Not a supported param: ciphertext'); </span>}
+&nbsp;
+    let kdfparams;
+    // TODO: breakout format validation into separate function
+    if (json.crypto.kdf === 'scrypt') {
+      kdfparams = json.crypto.kdfparams;
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (!unsortedEquals(Object.keys(kdfparams), ['dklen', 'n', 'p', 'r', 'salt'])) { <span class="cstat-no" title="statement not covered" >throw new Error('File is malformatted'); </span>}
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (!objHasKeys(kdfparams, ['dklen', 'n', 'p', 'r'])) { <span class="cstat-no" title="statement not covered" >throw new Error('Not a supported param: kdfparams'); </span>}
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (!isHex(kdfparams.salt)) { <span class="cstat-no" title="statement not covered" >throw new Error('Not a supported param: kdfparams.salt'); </span>}
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (!['dklen', 'n', 'p', 'r'].every(i =&gt; isNumber(kdfparams[i]))) { <span class="cstat-no" title="statement not covered" >throw new Error('Not a supported param: dklen, n, p, r must be numbers'); </span>}
+&nbsp;
+      let { salt, n, r, p, dklen } = kdfparams;
+      let derivedKey = WalletCrypto.scrypt(Buffer.from(password), Buffer.from(salt, 'hex'), n, r, p, dklen);
+      let seed = this.extractSeed(derivedKey, json);
+      return EthAccount.fromMew(seed);
+    } else <span class="missing-if-branch" title="else path not taken" >E</span>if (json.crypto.kdf === 'pbkdf2') {
+      kdfparams = json.crypto.kdfparams;
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (!unsortedEquals(Object.keys(kdfparams), ['c', 'dklen', 'prf', 'salt'])) { <span class="cstat-no" title="statement not covered" >throw new Error('File is malformatted'); </span>}
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (!isHex(kdfparams.salt)) { <span class="cstat-no" title="statement not covered" >throw new Error('Not a supported param: kdfparams.salt'); </span>}
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (kdfparams.prf !== 'hmac-sha256') { <span class="cstat-no" title="statement not covered" >throw new Error('Unsupported parameters to PBKDF2'); </span>}
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (!objHasKeys(kdfparams, ['c', 'dklen'])) { <span class="cstat-no" title="statement not covered" >throw new Error('Not a supported param: kdfparams'); </span>}
+      <span class="missing-if-branch" title="if path not taken" >I</span>if (!['c', 'dklen'].every(i =&gt; isNumber(kdfparams[i]))) { <span class="cstat-no" title="statement not covered" >throw new Error('Not a supported param: c and dklen must be numbers'); </span>}
+&nbsp;
+      let { salt, c, dklen } = kdfparams;
+      let derivedKey = WalletCrypto.pbkdf2(Buffer.from(password), Buffer.from(salt, 'hex'), c, dklen, 'sha256');
+      let seed = this.extractSeed(derivedKey, json);
+      return EthAccount.fromMew(seed);
+    } else {
+<span class="cstat-no" title="statement not covered" >      throw new Error('Unsupported key derivation scheme');</span>
+    }
+  }
+&nbsp;
+  /* end mew */
+&nbsp;
+  static fromBlockchainWallet (wallet) {
+    let metadata = wallet.metadata(METADATA_TYPE_ETH);
+    return new EthWallet(wallet, metadata);
+  }
+}
+&nbsp;
+module.exports = EthWallet;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Jul 05 2018 15:15:20 GMT+0300 (Turkey Standard Time)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

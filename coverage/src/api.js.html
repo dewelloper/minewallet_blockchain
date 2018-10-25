@@ -1,0 +1,1166 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src\api.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">src/</a> api.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">27.55% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>54/196</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">6.93% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>7/101</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">11.63% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>5/43</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">28.49% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>53/186</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">16×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+&nbsp;
+module.exports = new API();
+&nbsp;
+var assert = require('assert');
+var Helpers = require('./helpers');
+var WalletStore = require('./wallet-store');
+var WalletCrypto = require('./wallet-crypto');
+var MyWallet = require('./wallet');
+var constants = require('./constants');
+&nbsp;
+// API class
+function API () {
+  // private members
+  this.ROOT_URL = 'https://blockchain.info/';
+  this.API_ROOT_URL = 'https://api.blockchain.info/';
+  this.AJAX_RETRY_DEFAULT = 2;
+  this.API_CODE = '1770d5d9-bcea-4d28-ad21-6cbd5be018a8';
+  this.SERVER_TIME_OFFSET = null;
+  this.AJAX_TIMEOUT = 60000;
+}
+&nbsp;
+// encodeFormData :: Object -&gt; url encoded params
+API.prototype.encodeFormData = function (data) {
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (!data) <span class="cstat-no" title="statement not covered" >return '';</span>
+  var encoded = Object.keys(data).map(function (k) {
+    return encodeURIComponent(k) + '=' + encodeURIComponent(data[k]);
+  }).join('&amp;');
+  return encoded;
+};
+&nbsp;
+/* Permitted extra headers:
+   sessionToken -&gt; "Authorization Bearer &lt;token&gt;" */
+API.prototype.request = function (action, method, data, extraHeaders) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  data = data || {};</span>
+<span class="cstat-no" title="statement not covered" >  if (this.API_CODE != null) <span class="cstat-no" title="statement not covered" >data.api_code = this.API_CODE;</span></span>
+&nbsp;
+  var url = <span class="cstat-no" title="statement not covered" >this.ROOT_URL + method;</span>
+  var body = <span class="cstat-no" title="statement not covered" >data ? this.encodeFormData(data) : '';</span>
+  var time = <span class="cstat-no" title="statement not covered" >(new Date()).getTime();</span>
+&nbsp;
+  var options = <span class="cstat-no" title="statement not covered" >{</span>
+    method: action,
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    credentials: 'omit'
+  };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (extraHeaders) {</span>
+<span class="cstat-no" title="statement not covered" >    if (extraHeaders.sessionToken) {</span>
+<span class="cstat-no" title="statement not covered" >      options.headers['Authorization'] = 'Bearer ' + extraHeaders.sessionToken;</span>
+    }
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (action === 'GET') <span class="cstat-no" title="statement not covered" >url += '?' + body;</span></span>
+<span class="cstat-no" title="statement not covered" >  if (action === 'POST') <span class="cstat-no" title="statement not covered" >options.body = body;</span></span>
+&nbsp;
+  var handleNetworkError = <span class="cstat-no" title="statement not covered" >function () <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >    return Promise.reject({ initial_error: 'Connectivity error, failed to send network request' });</span>
+  };
+&nbsp;
+  var checkStatus = <span class="cstat-no" title="statement not covered" >function (response) <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >    if (response.status &gt;= 200 &amp;&amp; response.status &lt; 300) {</span>
+<span class="cstat-no" title="statement not covered" >      if (</span>
+        response.headers.get('content-type') &amp;&amp;
+        response.headers.get('content-type').indexOf('application/json') &gt; -1
+      ) {
+<span class="cstat-no" title="statement not covered" >        return response.json();</span>
+      } else <span class="cstat-no" title="statement not covered" >if (</span>
+        response.headers.get('content-type') &amp;&amp;
+        response.headers.get('content-type').indexOf('image/jpeg') &gt; -1
+      ) {
+<span class="cstat-no" title="statement not covered" >        return response.blob();</span>
+      } else <span class="cstat-no" title="statement not covered" >if (data.format === 'json') {</span>
+<span class="cstat-no" title="statement not covered" >        return response.json();</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        return response.text();</span>
+      }
+    } else {
+<span class="cstat-no" title="statement not covered" >      return response.text().then(Promise.reject.bind(Promise));</span>
+    }
+  };
+&nbsp;
+  var handleResponse = <span class="cstat-no" title="statement not covered" >function (response) <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >    this.handleNTPResponse(response, time);</span>
+<span class="cstat-no" title="statement not covered" >    return response;</span>
+  }.bind(this);
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return fetch(url, options)</span>
+    .catch(handleNetworkError)
+    .then(checkStatus)
+    .then(handleResponse);
+};
+&nbsp;
+API.prototype.retry = function (f, n) <span class="fstat-no" title="function not covered" >{</span>
+  var self = <span class="cstat-no" title="statement not covered" >this;</span>
+  var i = <span class="cstat-no" title="statement not covered" >n === null || n === undefined ? this.AJAX_RETRY_DEFAULT : n;</span>
+<span class="cstat-no" title="statement not covered" >  if (i &gt; 1) {</span>
+<span class="cstat-no" title="statement not covered" >    return f().then(</span>
+        undefined, // pass through success
+        function () <span class="fstat-no" title="function not covered" >{ <span class="cstat-no" title="statement not covered" >return self.retry(f, i - 1); </span>}</span>
+    );
+  } else {
+<span class="cstat-no" title="statement not covered" >    return f();</span>
+  }
+};
+&nbsp;
+// sync clocks with network time protocol
+API.prototype.handleNTPResponse = function (obj, clientTime) <span class="fstat-no" title="function not covered" >{</span>
+  // Calculate serverTimeOffset using NTP algo
+  var nowTime = <span class="cstat-no" title="statement not covered" >(new Date()).getTime();</span>
+<span class="cstat-no" title="statement not covered" >  if (obj.clientTimeDiff &amp;&amp; obj.serverTime) {</span>
+    var serverClientResponseDiffTime = <span class="cstat-no" title="statement not covered" >nowTime - obj.serverTime;</span>
+    var responseTime = <span class="cstat-no" title="statement not covered" >(obj.clientTimeDiff - nowTime + clientTime - serverClientResponseDiffTime) / 2;</span>
+    var thisOffset = <span class="cstat-no" title="statement not covered" >(serverClientResponseDiffTime - responseTime) / 2;</span>
+<span class="cstat-no" title="statement not covered" >    if (Helpers.isNumber(this.SERVER_TIME_OFFSET)) {</span>
+<span class="cstat-no" title="statement not covered" >      this.SERVER_TIME_OFFSET = (this.SERVER_TIME_OFFSET + thisOffset) / 2;</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      this.SERVER_TIME_OFFSET = thisOffset;</span>
+    }
+<span class="cstat-no" title="statement not covered" >    console.log('Server Time offset ' + this.SERVER_TIME_OFFSET + 'ms - This offset ' + thisOffset);</span>
+  }
+};
+&nbsp;
+// Definition of API
+API.prototype.getBalances = function (addresses) <span class="fstat-no" title="function not covered" >{</span>
+  var data = <span class="cstat-no" title="statement not covered" >{</span>
+    active: addresses.join('|'),
+    format: 'json'
+  };
+<span class="cstat-no" title="statement not covered" >  return this.retry(this.request.bind(this, 'POST', 'balance', data));</span>
+};
+&nbsp;
+API.prototype.getTransaction = function (txhash) <span class="fstat-no" title="function not covered" >{</span>
+  var transaction = <span class="cstat-no" title="statement not covered" >'tx/' + txhash;</span>
+  var data = <span class="cstat-no" title="statement not covered" >{</span>
+    format: 'json',
+    cors: 'true'
+  };
+<span class="cstat-no" title="statement not covered" >  return this.retry(this.request.bind(this, 'GET', transaction, data));</span>
+};
+&nbsp;
+API.prototype.getFiatAtTime = function (time, value, currencyCode) <span class="fstat-no" title="function not covered" >{</span>
+  var data = <span class="cstat-no" title="statement not covered" >{</span>
+    value: value,
+    currency: currencyCode.toUpperCase(),
+    time: time,
+    textual: false,
+    nosavecurrency: true
+  };
+<span class="cstat-no" title="statement not covered" >  return this.retry(this.request.bind(this, 'GET', 'frombtc', data));</span>
+};
+&nbsp;
+API.prototype.getTicker = function () <span class="fstat-no" title="function not covered" >{</span>
+  var data = <span class="cstat-no" title="statement not covered" >{ format: 'json' };</span>
+  // return this.request('GET', 'ticker', data);
+<span class="cstat-no" title="statement not covered" >  return this.retry(this.request.bind(this, 'GET', 'ticker', data));</span>
+};
+&nbsp;
+API.prototype.getUnspent = function (fromAddresses, confirmations) <span class="fstat-no" title="function not covered" >{</span>
+  var data = <span class="cstat-no" title="statement not covered" >{</span>
+    active: fromAddresses.join('|'),
+    confirmations: Helpers.isPositiveNumber(confirmations) ? confirmations : -1,
+    format: 'json'
+  };
+<span class="cstat-no" title="statement not covered" >  return this.retry(this.request.bind(this, 'POST', 'unspent', data));</span>
+};
+&nbsp;
+API.prototype.getHistory = function (addresses, txFilter, offset, n, syncBool) <span class="fstat-no" title="function not covered" >{</span>
+  var clientTime = <span class="cstat-no" title="statement not covered" >(new Date()).getTime();</span>
+<span class="cstat-no" title="statement not covered" >  offset = offset || 0;</span>
+<span class="cstat-no" title="statement not covered" >  n = n || 0;</span>
+&nbsp;
+  var data = <span class="cstat-no" title="statement not covered" >{</span>
+    active: addresses.join('|'),
+    format: 'json',
+    offset: offset,
+    no_compact: true,
+    ct: clientTime,
+    n: n,
+    language: WalletStore.getLanguage(),
+    no_buttons: true
+  };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (txFilter !== undefined &amp;&amp; txFilter !== null) {</span>
+<span class="cstat-no" title="statement not covered" >    data.filter = txFilter;</span>
+  }
+<span class="cstat-no" title="statement not covered" >  return this.retry(this.request.bind(this, 'POST', 'multiaddr', data, null, syncBool));</span>
+};
+&nbsp;
+API.prototype.securePost = function (url, data, extraHeaders) <span class="fstat-no" title="function not covered" >{</span>
+  var clone = <span class="cstat-no" title="statement not covered" >Helpers.merge({}, data);</span>
+<span class="cstat-no" title="statement not covered" >  if (!Helpers.isValidGUID(data.guid)) { <span class="cstat-no" title="statement not covered" >clone.guid = MyWallet.wallet.guid; </span>}</span>
+<span class="cstat-no" title="statement not covered" >  if (!data.sharedKey) {</span>
+    var sharedKey = <span class="cstat-no" title="statement not covered" >MyWallet.wallet ? MyWallet.wallet.sharedKey : undefined;</span>
+<span class="cstat-no" title="statement not covered" >    if (!Helpers.isValidSharedKey(sharedKey)) <span class="cstat-no" title="statement not covered" >throw new Error('Shared key is invalid');</span></span>
+    // Rather than sending the shared key plain text
+    // send a hash using a totp scheme
+    var now = <span class="cstat-no" title="statement not covered" >new Date().getTime();</span>
+    var timestamp = <span class="cstat-no" title="statement not covered" >parseInt((now - this.SERVER_TIME_OFFSET) / 10000, 10);</span>
+    var SKHashHex = <span class="cstat-no" title="statement not covered" >WalletCrypto.sha256(sharedKey.toLowerCase() + timestamp).toString('hex');</span>
+    var i = <span class="cstat-no" title="statement not covered" >0;</span>
+    var tSKUID = <span class="cstat-no" title="statement not covered" >SKHashHex.substring(i, i += 8) + '-' +</span>
+                 SKHashHex.substring(i, i += 4) + '-' +
+                 SKHashHex.substring(i, i += 4) + '-' +
+                 SKHashHex.substring(i, i += 4) + '-' +
+                 SKHashHex.substring(i, i += 12);
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    clone.sharedKey = tSKUID;</span>
+<span class="cstat-no" title="statement not covered" >    clone.sKTimestamp = timestamp;</span>
+<span class="cstat-no" title="statement not covered" >    clone.sKDebugHexHash = SKHashHex;</span>
+<span class="cstat-no" title="statement not covered" >    clone.sKDebugTimeOffset = this.SERVER_TIME_OFFSET;</span>
+<span class="cstat-no" title="statement not covered" >    clone.sKDebugOriginalClientTime = now;</span>
+<span class="cstat-no" title="statement not covered" >    clone.sKDebugOriginalSharedKey = sharedKey;</span>
+  }
+<span class="cstat-no" title="statement not covered" >  clone.format = data.format ? data.format : 'plain';</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return this.retry(this.request.bind(this, 'POST', url, clone, extraHeaders));</span>
+};
+&nbsp;
+API.prototype.securePostCallbacks = function (url, data, success, error) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  this.securePost(url, data).then(success).catch(error);</span>
+};
+&nbsp;
+// 01000000013e095250cb35129c7dee081b8c89b4bff69f72222a25c45ba9747a704a6d0bcd010000006b4830450221009b4f6619b1499ea19494aec34c36fdeac9146b9f87f010b7ebf1eb8a1b590c6e02202f5d9b0cfa4107d586b5b370494b9932eba1411468af06e431001932c12bf245012103cf91e6b06d1a2432721559a010ee67e98f8ef0421b15cca66dc9717ac1af8d1effffffff0210270000000000001976a91402549a8a872fbe54721a899e5ac2a87daac2358088acf0ba0400000000001976a9148ee77b3dd0e33783c11a6c28473d16e9b63dc38588ac00000000
+API.prototype.pushTx = function (txHex, note) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  assert(txHex, 'transaction required');</span>
+&nbsp;
+  var data = <span class="cstat-no" title="statement not covered" >{</span>
+    tx: txHex,
+    format: 'plain'
+  };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (note) <span class="cstat-no" title="statement not covered" >data.note = note;</span></span>
+&nbsp;
+  var responseTXHASH = <span class="cstat-no" title="statement not covered" >function (responseText) <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >    if (responseText.indexOf('Transaction Submitted') &gt; -1) {</span>
+<span class="cstat-no" title="statement not covered" >      return true;</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      return responseText;</span>
+    }
+  };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return this.request('POST', 'pushtx', data).then(responseTXHASH);</span>
+};
+&nbsp;
+API.prototype.requestApi = function (endpoint, data) <span class="fstat-no" title="function not covered" >{</span>
+  var handleNetworkError = <span class="cstat-no" title="statement not covered" >function () <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >    return Promise.reject({ initial_error: 'Connectivity error, failed to send network request' });</span>
+  };
+&nbsp;
+  var checkStatus = <span class="cstat-no" title="statement not covered" >function (response) <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >    return response.status &gt;= 200 &amp;&amp; response.status &lt; 300</span>
+      ? response.json()
+      : response.text().then(Promise.reject.bind(Promise));
+  };
+&nbsp;
+  var url = <span class="cstat-no" title="statement not covered" >data ? `${endpoint}?${this.encodeFormData(data)}` : endpoint;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return fetch(this.API_ROOT_URL + url)</span>
+    .then(checkStatus, handleNetworkError);
+};
+&nbsp;
+API.prototype.getFees = function () <span class="fstat-no" title="function not covered" >{</span>
+  const { NETWORK, SERVER_FEE_FALLBACK } = <span class="cstat-no" title="statement not covered" >constants;</span>
+<span class="cstat-no" title="statement not covered" >  return NETWORK === 'testnet' ? Promise.resolve(SERVER_FEE_FALLBACK) : this.requestApi('mempool/fees');</span>
+};
+&nbsp;
+API.prototype.getExchangeRate = function (currency, base) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  return this.requestApi('ticker', { currency, base });</span>
+};
+&nbsp;
+API.prototype.exportHistory = function (active, currency, options) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  options = options || {};</span>
+  var data = <span class="cstat-no" title="statement not covered" >{</span>
+    active: Array.isArray(active) ? active.join('|') : active,
+    currency: currency
+  };
+<span class="cstat-no" title="statement not covered" >  if (options.start) <span class="cstat-no" title="statement not covered" >data.start = options.start;</span></span>
+<span class="cstat-no" title="statement not covered" >  if (options.end) <span class="cstat-no" title="statement not covered" >data.end = options.end;</span></span>
+<span class="cstat-no" title="statement not covered" >  if (options.coinCode === 'btc') {</span>
+<span class="cstat-no" title="statement not covered" >    return this.request('POST', 'v2/export-history', data);</span>
+  } else {
+<span class="cstat-no" title="statement not covered" >    return this.requestApi(options.coinCode + '/v2/export-history', data);</span>
+  }
+};
+&nbsp;
+// id :: 0 | 1 | 2
+API.prototype.createExperiment = function (id) <span class="fstat-no" title="function not covered" >{</span>
+  let recordA = <span class="cstat-no" title="statement not covered" >this.recordExperimentResult.bind(this, id, 'a');</span>
+  let recordB = <span class="cstat-no" title="statement not covered" >this.recordExperimentResult.bind(this, id, 'b');</span>
+<span class="cstat-no" title="statement not covered" >  return { recordA, recordB };</span>
+};
+&nbsp;
+API.prototype.recordExperimentResult = function (experiment, ab) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  return fetch(`${this.ROOT_URL}event?name=wallet_experiment_${experiment}_${ab}`);</span>
+};
+&nbsp;
+API.prototype.incrementEventStat = function (event) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  return fetch(this.ROOT_URL + 'event?name=' + event);</span>
+};
+&nbsp;
+API.prototype.incrementSecPassStats = function (activeBool) <span class="fstat-no" title="function not covered" >{</span>
+  var active = <span class="cstat-no" title="statement not covered" >activeBool ? 1 : 0;</span>
+<span class="cstat-no" title="statement not covered" >  return fetch(this.ROOT_URL + 'event?name=wallet_login_second_password_' + active);</span>
+};
+&nbsp;
+API.prototype.confirmationScreenStats = function (guid) <span class="fstat-no" title="function not covered" >{</span>
+  var group = <span class="cstat-no" title="statement not covered" >Helpers.guidToGroup(guid);</span>
+<span class="cstat-no" title="statement not covered" >  return fetch(this.ROOT_URL + 'event?name=wallet_fee_experiment_' + group + '_confirmation_screen');</span>
+};
+&nbsp;
+API.prototype.pushTxStats = function (guid, advanced) <span class="fstat-no" title="function not covered" >{</span>
+  var group = <span class="cstat-no" title="statement not covered" >Helpers.guidToGroup(guid);</span>
+<span class="cstat-no" title="statement not covered" >  return fetch(this.ROOT_URL + 'event?name=wallet_fee_experiment_' + group + '_pushed_tx' + (advanced ? '_advanced' : ''));</span>
+};
+&nbsp;
+API.prototype.incrementLoginViaQrStats = function () <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  return fetch(this.ROOT_URL + 'event?name=wallet_web_login_via_qr');</span>
+};
+&nbsp;
+API.prototype.incrementCurrencyUsageStats = function (btcBalance, ethBalance, bchBalance) {
+  let base = this.ROOT_URL + 'event?name=wallet_login_balance';
+  let makeEventUrl = (btc, eth, bch) =&gt; `${base}_btc_${btc ? 1 : 0}_eth_${eth ? 1 : 0}_bch_${bch ? 1 : 0}`;
+  fetch(makeEventUrl(btcBalance &gt; 0, ethBalance &gt; 0, bchBalance &gt; 0));
+};
+&nbsp;
+API.prototype.getPriceChartData = function (params) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  return this.requestApi(`price/index-series?base=${params.base}&amp;quote=${params.quote}&amp;start=${params.start}&amp;scale=${params.scale}`);</span>
+};
+&nbsp;
+API.prototype.incrementBuyLimitCounter = function (amount) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  return fetch(`${this.ROOT_URL}event?name=wallet_buy_${amount === 'over' ? 'over' : 'under'}_limit`);</span>
+};
+&nbsp;
+API.prototype.incrementBuyDropoff = function (step) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  return fetch(`${this.ROOT_URL}event?name=wallet_buy_dropoff_${step}`);</span>
+};
+&nbsp;
+API.prototype.incrementShapeshiftStat = function (options = {}) <span class="fstat-no" title="function not covered" >{</span>
+  let base = <span class="cstat-no" title="statement not covered" >`${this.ROOT_URL}event?name=wallet_shapeshift_viewed`;</span>
+<span class="cstat-no" title="statement not covered" >  return fetch(base + (options.maxLimitError ? '_max_limit_error' : ''));</span>
+};
+&nbsp;
+API.prototype.incrementPartnerAccountCreation = function (partner) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  return fetch(`${this.ROOT_URL}event?name=${partner}_account_creation`);</span>
+};
+&nbsp;
+API.prototype.incrementPartnerQuote = function (partner, type, baseCurrency, quoteCurrency) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  type = type.toLowerCase();</span>
+<span class="cstat-no" title="statement not covered" >  partner = partner.toLowerCase();</span>
+<span class="cstat-no" title="statement not covered" >  baseCurrency = baseCurrency.toLowerCase();</span>
+<span class="cstat-no" title="statement not covered" >  quoteCurrency = quoteCurrency.toLowerCase();</span>
+<span class="cstat-no" title="statement not covered" >  return fetch(`${this.ROOT_URL}event?name=${partner}_quote_${type}_${baseCurrency}_${quoteCurrency}`);</span>
+};
+&nbsp;
+API.prototype.incrementPartnerTrade = function (partner, type, baseCurrency, quoteCurrency, confirmed) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  type = type.toLowerCase();</span>
+<span class="cstat-no" title="statement not covered" >  partner = partner.toLowerCase();</span>
+<span class="cstat-no" title="statement not covered" >  baseCurrency = baseCurrency.toLowerCase();</span>
+<span class="cstat-no" title="statement not covered" >  quoteCurrency = quoteCurrency.toLowerCase();</span>
+  let status = <span class="cstat-no" title="statement not covered" >confirmed ? 'confirmed' : 'created';</span>
+<span class="cstat-no" title="statement not covered" >  return fetch(`${this.ROOT_URL}event?name=${partner}_trade_${type}_${baseCurrency}_${quoteCurrency}_${status}`);</span>
+};
+&nbsp;
+API.prototype.getBlockchainAddress = function () <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  return this.request('GET', 'charge_address');</span>
+};
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Jul 05 2018 15:15:20 GMT+0300 (Turkey Standard Time)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

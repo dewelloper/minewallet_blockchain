@@ -1,0 +1,2978 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src\blockchain-wallet.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">src/</a> blockchain-wallet.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">30.52% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>163/534</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">24.14% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>49/203</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">33.33% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>43/129</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">31.12% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>159/511</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570
+571
+572
+573
+574
+575
+576
+577
+578
+579
+580
+581
+582
+583
+584
+585
+586
+587
+588
+589
+590
+591
+592
+593
+594
+595
+596
+597
+598
+599
+600
+601
+602
+603
+604
+605
+606
+607
+608
+609
+610
+611
+612
+613
+614
+615
+616
+617
+618
+619
+620
+621
+622
+623
+624
+625
+626
+627
+628
+629
+630
+631
+632
+633
+634
+635
+636
+637
+638
+639
+640
+641
+642
+643
+644
+645
+646
+647
+648
+649
+650
+651
+652
+653
+654
+655
+656
+657
+658
+659
+660
+661
+662
+663
+664
+665
+666
+667
+668
+669
+670
+671
+672
+673
+674
+675
+676
+677
+678
+679
+680
+681
+682
+683
+684
+685
+686
+687
+688
+689
+690
+691
+692
+693
+694
+695
+696
+697
+698
+699
+700
+701
+702
+703
+704
+705
+706
+707
+708
+709
+710
+711
+712
+713
+714
+715
+716
+717
+718
+719
+720
+721
+722
+723
+724
+725
+726
+727
+728
+729
+730
+731
+732
+733
+734
+735
+736
+737
+738
+739
+740
+741
+742
+743
+744
+745
+746
+747
+748
+749
+750
+751
+752
+753
+754
+755
+756
+757
+758
+759
+760
+761
+762
+763
+764
+765
+766
+767
+768
+769
+770
+771
+772
+773
+774
+775
+776
+777
+778
+779
+780
+781
+782
+783
+784
+785
+786
+787
+788
+789
+790
+791
+792
+793
+794
+795
+796
+797
+798
+799
+800
+801
+802
+803
+804
+805
+806
+807
+808
+809
+810
+811
+812
+813
+814
+815
+816
+817
+818
+819
+820
+821
+822
+823
+824
+825
+826
+827
+828
+829
+830
+831
+832
+833
+834
+835
+836
+837
+838
+839
+840
+841
+842
+843
+844
+845
+846
+847
+848
+849
+850
+851
+852
+853
+854
+855
+856
+857
+858
+859
+860
+861
+862
+863
+864
+865
+866
+867
+868
+869
+870
+871
+872
+873
+874
+875
+876
+877
+878
+879
+880
+881
+882
+883
+884
+885
+886
+887
+888
+889
+890
+891
+892
+893
+894
+895
+896
+897
+898
+899
+900
+901
+902
+903
+904
+905
+906
+907
+908
+909
+910
+911
+912
+913
+914
+915
+916
+917
+918
+919
+920
+921
+922
+923
+924
+925
+926
+927
+928
+929
+930
+931
+932
+933
+934
+935
+936
+937
+938
+939
+940
+941
+942
+943
+944
+945
+946
+947
+948
+949
+950
+951
+952
+953
+954
+955
+956
+957
+958
+959
+960
+961
+962
+963
+964
+965
+966
+967
+968
+969
+970
+971
+972</td><td class="line-coverage quiet"><span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">56×</span>
+<span class="cline-any cline-yes">56×</span>
+<span class="cline-any cline-yes">56×</span>
+<span class="cline-any cline-yes">56×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">56×</span>
+<span class="cline-any cline-yes">56×</span>
+<span class="cline-any cline-yes">56×</span>
+<span class="cline-any cline-yes">56×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">56×</span>
+<span class="cline-any cline-yes">56×</span>
+<span class="cline-any cline-yes">56×</span>
+<span class="cline-any cline-yes">56×</span>
+<span class="cline-any cline-yes">56×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">56×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">56×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">56×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">54×</span>
+<span class="cline-any cline-yes">54×</span>
+<span class="cline-any cline-yes">54×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">56×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">56×</span>
+<span class="cline-any cline-yes">55×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">56×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">56×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">56×</span>
+<span class="cline-any cline-yes">56×</span>
+<span class="cline-any cline-yes">56×</span>
+<span class="cline-any cline-yes">56×</span>
+<span class="cline-any cline-yes">56×</span>
+<span class="cline-any cline-yes">56×</span>
+<span class="cline-any cline-yes">56×</span>
+<span class="cline-any cline-yes">56×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">46×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-yes">45×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">51×</span>
+<span class="cline-any cline-yes">50×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">module.exports = Wallet;
+&nbsp;
+// dependencies
+var assert = require('assert');
+var BIP39 = require('bip39');
+var RNG = require('./rng.js');
+&nbsp;
+var WalletStore = require('./wallet-store');
+var WalletCrypto = require('./wallet-crypto');
+var HDWallet = require('./hd-wallet');
+var Address = require('./address.js');
+var Helpers = require('./helpers');
+var MyWallet = require('./wallet'); // This cyclic import should be avoided once the refactor is complete
+var API = require('./api');
+var BlockchainSettingsAPI = require('./blockchain-settings-api');
+var KeyRing = require('./keyring');
+var TxList = require('./transaction-list');
+var Block = require('./bitcoin-block');
+var External = require('./external');
+var AccountInfo = require('./account-info');
+var Metadata = require('./metadata');
+var constants = require('./constants');
+var Payment = require('./payment');
+var Labels = require('./labels');
+var EthWallet = require('./eth/eth-wallet');
+var ShapeShift = require('./shift');
+var Bitcoin = require('bitcoinjs-lib');
+var BitcoinCash = require('./bch');
+&nbsp;
+// Wallet
+&nbsp;
+function Wallet (object) {
+  var obj = object || {};
+  obj.options = obj.options || {};
+  obj.keys = obj.keys || [];
+  obj.hd_wallets = obj.hd_wallets || [];
+&nbsp;
+  this._guid = obj.guid;
+  this._sharedKey = obj.sharedKey;
+  this._double_encryption = obj.double_encryption || false;
+  this._dpasswordhash = obj.dpasswordhash;
+  // options
+  let options = Object.assign(constants.getDefaultWalletOptions(), obj.options);
+  this._pbkdf2_iterations = options.pbkdf2_iterations;
+  this._fee_per_kb = options.fee_per_kb;
+  this._html5_notifications = options.html5_notifications;
+  this._logout_time = options.logout_time;
+&nbsp;
+  // legacy addresses list
+  this._addresses = obj.keys ? obj.keys.reduce(Address.factory, {}) : <span class="branch-1 cbranch-no" title="branch not covered" >undefined;</span>
+  // hdwallets list
+  this._hd_wallets = obj.hd_wallets ? obj.hd_wallets.map(HDWallet.factory) : <span class="branch-1 cbranch-no" title="branch not covered" >undefined;</span>
+&nbsp;
+  // address book list
+  // address book in json is [{address: 'address1', label: 'label1'} , ... ]
+  // address book in memory is {address1: 'label1', address2: 'label2'}
+  this._address_book = obj.address_book
+      ? obj.address_book.reduce(function (o, a) {
+        var address = a.address || a.addr;
+        o[address] = a.label;
+        return o;
+      }, {})
+      : {};
+&nbsp;
+  this._metadataHDNode = null;
+&nbsp;
+  if (obj.metadataHDNode) {
+    this._metadataHDNode = Bitcoin.HDNode.fromBase58(obj.metadataHDNode, constants.getNetwork());
+  } else <span class="missing-if-branch" title="else path not taken" >E</span>if (!this.isUpgradedToHD) {
+  } else <span class="cstat-no" title="statement not covered" >if (!this.isDoubleEncrypted) {</span>
+<span class="cstat-no" title="statement not covered" >    this._metadataHDNode = Metadata.deriveMetadataNode(this.hdwallet.getMasterHDNode());</span>
+<span class="cstat-no" title="statement not covered" >    MyWallet.syncWallet();</span>
+  } else {
+<span class="cstat-no" title="statement not covered" >    console.warn('Second password required to prepare KV Store');</span>
+  }
+&nbsp;
+  // tx_notes dictionary
+  this._tx_notes = obj.tx_notes || {};
+&nbsp;
+  // tx_tags list (not sure if list or object)
+  // this._tx_tags = obj.tx_tags || [];
+&nbsp;
+  // tag_names list (check how is represented each tag-name)
+  this._tx_names = obj.tx_names || [];
+&nbsp;
+  // fetched data from the server
+  this._totalSent = 0;
+  this._totalReceived = 0;
+  this._finalBalance = 0;
+  this._numberTxTotal = 0;
+  this._txList = new TxList();
+  this._latestBlock = null;
+  this._accountInfo = null;
+  this._external = null;
+}
+&nbsp;
+Object.defineProperties(Wallet.prototype, {
+  'isMetadataReady': {
+    configurable: false,
+    get: function () <span class="fstat-no" title="function not covered" >{ <span class="cstat-no" title="statement not covered" >return this._metadataHDNode != null; </span>}</span>
+  },
+  'guid': {
+    configurable: false,
+    get: function () { return this._guid; }
+  },
+  'sharedKey': {
+    configurable: false,
+    get: function () { return this._sharedKey; }
+  },
+  'context': {
+    configurable: false,
+    get: function () <span class="fstat-no" title="function not covered" >{</span>
+      var xpubs = <span class="cstat-no" title="statement not covered" >this.hdwallet &amp;&amp; this.hdwallet.activeXpubs;</span>
+<span class="cstat-no" title="statement not covered" >      return this.activeAddresses.concat(xpubs || []);</span>
+    }
+  },
+  'isDoubleEncrypted': {
+    configurable: false,
+    get: function () { return this._double_encryption; }
+  },
+  'dpasswordhash': {
+    configurable: false,
+    get: function () { return this._dpasswordhash; }
+  },
+  'fee_per_kb': {
+    configurable: false,
+    get: function () { return this._fee_per_kb; },
+    set: function (value) {
+      switch (true) {
+        case !Helpers.isPositiveNumber(value):
+          throw new Error('wallet.fee_per_kb must be a positive number');
+        case value &gt; 1000000:  // 0.01 btc
+          throw new Error('wallet.fee_per_kb too high (0.01 btc limit)');
+        default:
+          this._fee_per_kb = value;
+          MyWallet.syncWallet();
+      }
+    }
+  },
+  'pbkdf2_iterations': {
+    configurable: false,
+    get: function () { return this._pbkdf2_iterations; }
+  },
+  'totalSent': {
+    configurable: false,
+    get: function () { return this._totalSent; },
+    set: function (value) {
+      if (Helpers.isPositiveNumber(value)) {
+        this._totalSent = value;
+      } else {
+        throw new Error('wallet.totalSent must be a positive number');
+      }
+    }
+  },
+  'totalReceived': {
+    configurable: false,
+    get: function () { return this._totalReceived; },
+    set: function (value) {
+      if (Helpers.isPositiveNumber(value)) {
+        this._totalReceived = value;
+      } else {
+        throw new Error('wallet.totalReceived must be a positive number');
+      }
+    }
+  },
+  'finalBalance': {
+    configurable: false,
+    get: function () { return this._finalBalance; },
+    set: function (value) {
+      if (Helpers.isPositiveNumber(value)) {
+        this._finalBalance = value;
+      } else {
+        throw new Error('wallet.finalBalance must be a positive number');
+      }
+    }
+  },
+  'txList': {
+    configurable: false,
+    get: function () <span class="fstat-no" title="function not covered" >{ <span class="cstat-no" title="statement not covered" >return this._txList; </span>}</span>
+  },
+  'numberTxTotal': {
+    configurable: false,
+    get: function () { return this._numberTxTotal; },
+    set: function (value) {
+      if (Helpers.isPositiveInteger(value)) {
+        this._numberTxTotal = value;
+      } else {
+        throw new Error('wallet.numberTx must be a positive integer');
+      }
+    }
+  },
+  'addresses': {
+    configurable: false,
+    get: function () { return Object.keys(this._addresses); }
+  },
+  'activeAddresses': {
+    configurable: false,
+    get: function () { return this.activeKeys.map(function (k) { return k.address; }); }
+  },
+  'spendableActiveAddresses': {
+    configurable: false,
+    get: function () {
+      return this.activeKeys
+          .filter(function (k) { return !k.isWatchOnly; })
+          .map(function (k) { return k.address; });
+    }
+  },
+  'key': {
+    configurable: false,
+    value: function (addr) { return this._addresses[addr]; }
+  },
+  'activeKey': {
+    configurable: false,
+    value: function (addr) {
+      var k = this._addresses[addr];
+      var r = !k || k.archived ? null : k;
+      return r;
+    }
+  },
+  'keys': {
+    configurable: false,
+    get: function () {
+      var that = this;
+      return that.addresses.map(function (a) { return that.key(a); });
+    }
+  },
+  'activeKeys': {
+    configurable: false,
+    get: function () { return this.keys.filter(function (a) { return !a.archived; }); }
+  },
+  'hdwallet': {
+    configurable: false,
+    get: function () { return this._hd_wallets[0]; }
+  },
+  'isUpgradedToHD': {
+    configurable: false,
+    get: function () {
+      return !(this._hd_wallets == null || this._hd_wallets.length === 0);
+    }
+  },
+  'external': {
+    configurable: false,
+    get: function () <span class="fstat-no" title="function not covered" >{ <span class="cstat-no" title="statement not covered" >return this._external; </span>}</span>
+  },
+  'isEncryptionConsistent': {
+    configurable: false,
+    get: function () <span class="fstat-no" title="function not covered" >{</span>
+      var operation;
+<span class="cstat-no" title="statement not covered" >      if (this.isDoubleEncrypted) {</span>
+<span class="cstat-no" title="statement not covered" >        operation = function (k) <span class="fstat-no" title="function not covered" >{ <span class="cstat-no" title="statement not covered" >return k.isEncrypted; </span>};</span></span>
+      } else { // no double encryption activated
+<span class="cstat-no" title="statement not covered" >        operation = function (k) <span class="fstat-no" title="function not covered" >{ <span class="cstat-no" title="statement not covered" >return k.isUnEncrypted; </span>};</span></span>
+      }
+      var A = <span class="cstat-no" title="statement not covered" >this.keys.filter(function (k) <span class="fstat-no" title="function not covered" >{ <span class="cstat-no" title="statement not covered" >return !k.isWatchOnly; </span>})</span></span>
+                       .map(operation)
+                       .reduce(Helpers.and, true);
+      var W = <span class="cstat-no" title="statement not covered" >this._hd_wallets.map(operation)</span>
+                              .reduce(Helpers.and, true);
+<span class="cstat-no" title="statement not covered" >      return A &amp;&amp; W;</span>
+    }
+  },
+  'balanceActiveLegacy': {
+    configurable: false,
+    get: function () {
+      return this.activeKeys
+                 .map(function (k) { return k.balance; })
+                 .reduce(Helpers.add, 0);
+    }
+  },
+  'balanceActiveAccounts': {
+    configurable: false,
+    get: function () <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >      if (this.isUpgradedToHD) {</span>
+<span class="cstat-no" title="statement not covered" >        return this.hdwallet.accounts</span>
+                  .filter(function (a) <span class="fstat-no" title="function not covered" >{ <span class="cstat-no" title="statement not covered" >return !a.archived; </span>})</span>
+                  .map(function (a) <span class="fstat-no" title="function not covered" >{ <span class="cstat-no" title="statement not covered" >return a.balance; </span>})</span>
+                  .reduce(Helpers.add, 0);
+      } else {
+<span class="cstat-no" title="statement not covered" >        return 0;</span>
+      }
+    }
+  },
+  'balanceActive': {
+    configurable: false,
+    get: function () <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >      return this.balanceActiveLegacy + this.balanceActiveAccounts;</span>
+    }
+  },
+  'balanceSpendableActive': {
+    configurable: false,
+    get: function () <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >      return this.balanceSpendableActiveLegacy + this.balanceActiveAccounts;</span>
+    }
+  },
+  'balanceSpendableActiveLegacy': {
+    configurable: false,
+    get: function () <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >      return this.activeKeys</span>
+                 .filter(function (k) <span class="fstat-no" title="function not covered" >{ <span class="cstat-no" title="statement not covered" >return !k.isWatchOnly; </span>})</span>
+                 .map(function (k) <span class="fstat-no" title="function not covered" >{ <span class="cstat-no" title="statement not covered" >return k.balance; </span>})</span>
+                 .reduce(Helpers.add, 0);
+    }
+  },
+  'addressBook': {
+    configurable: false,
+    get: function () { return this._address_book; }
+  },
+  'defaultPbkdf2Iterations': {
+    configurable: false,
+    get: function () { return 5000; }
+  },
+  'latestBlock': {
+    configurable: false,
+    get: function () <span class="fstat-no" title="function not covered" >{ <span class="cstat-no" title="statement not covered" >return this._latestBlock; </span>},</span>
+    set: function (json) <span class="fstat-no" title="function not covered" >{</span>
+      var b = <span class="cstat-no" title="statement not covered" >Block.fromJSON(json);</span>
+<span class="cstat-no" title="statement not covered" >      if (b != null) {</span>
+<span class="cstat-no" title="statement not covered" >        this._latestBlock = b;</span>
+<span class="cstat-no" title="statement not covered" >        WalletStore.sendEvent('did_set_latest_block');</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        throw new Error('tried to set wrong wallet.latestBlock');</span>
+      }
+    }
+  },
+  'logoutTime': {
+    configurable: false,
+    get: function () { return this._logout_time; },
+    set: function (t) {
+      if (Helpers.isPositiveInteger(t) &amp;&amp; Helpers.isInRange(t, 60000, 86400001)) {
+        this._logout_time = t;
+        MyWallet.syncWallet();
+      } else {
+        throw new Error('wallet.logoutTime must be a positive integer in range 60000,86400001');
+      }
+    }
+  },
+  'accountInfo': {
+    configurable: false,
+    get: function () <span class="fstat-no" title="function not covered" >{ <span class="cstat-no" title="statement not covered" >return this._accountInfo; </span>}</span>
+  },
+  'labels': {
+    configurable: false,
+    get: function () <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >      return this._labels;</span>
+    }
+  },
+  'eth': {
+    configurable: false,
+    get: function () <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >      return this._eth;</span>
+    }
+  },
+  'shapeshift': {
+    configurable: false,
+    get: function () <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >      return this._shapeshift;</span>
+    }
+  },
+  'bch': {
+    configurable: false,
+    get: function () <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >      return this._bch;</span>
+    }
+  }
+});
+&nbsp;
+// update-wallet-balances after multiaddr call
+Wallet.prototype._updateWalletInfo = function (obj) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  if (obj.info) {</span>
+<span class="cstat-no" title="statement not covered" >    if (obj.info.notice) {</span>
+<span class="cstat-no" title="statement not covered" >      WalletStore.sendEvent('msg', {type: 'error', message: obj.info.notice});</span>
+    }
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (obj.wallet == null) {</span>
+<span class="cstat-no" title="statement not covered" >    this.totalSent = 0;</span>
+<span class="cstat-no" title="statement not covered" >    this.totalReceived = 0;</span>
+<span class="cstat-no" title="statement not covered" >    this.finalBalance = 0;</span>
+<span class="cstat-no" title="statement not covered" >    this.numberTxTotal = 0;</span>
+<span class="cstat-no" title="statement not covered" >    return true;</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  this.totalSent = obj.wallet.total_sent;</span>
+<span class="cstat-no" title="statement not covered" >  this.totalReceived = obj.wallet.total_received;</span>
+<span class="cstat-no" title="statement not covered" >  this.finalBalance = obj.wallet.final_balance;</span>
+<span class="cstat-no" title="statement not covered" >  this.numberTxTotal = obj.wallet.n_tx;</span>
+&nbsp;
+  var updateAccountAndAddressesInfo = <span class="cstat-no" title="statement not covered" >function (e) <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >    if (this.isUpgradedToHD) {</span>
+      var account = <span class="cstat-no" title="statement not covered" >this.hdwallet.activeAccount(e.address);</span>
+<span class="cstat-no" title="statement not covered" >      if (account) {</span>
+<span class="cstat-no" title="statement not covered" >        account.balance = e.final_balance;</span>
+<span class="cstat-no" title="statement not covered" >        account.n_tx = e.n_tx;</span>
+<span class="cstat-no" title="statement not covered" >        account.lastUsedReceiveIndex = e.account_index === 0 ? null : e.account_index - 1;</span>
+<span class="cstat-no" title="statement not covered" >        account.changeIndex = e.change_index;</span>
+      }
+    }
+    var address = <span class="cstat-no" title="statement not covered" >this.activeKey(e.address);</span>
+<span class="cstat-no" title="statement not covered" >    if (address) {</span>
+<span class="cstat-no" title="statement not covered" >      address.balance = e.final_balance;</span>
+<span class="cstat-no" title="statement not covered" >      address.totalReceived = e.total_received;</span>
+<span class="cstat-no" title="statement not covered" >      address.totalSent = e.total_sent;</span>
+    }
+  };
+<span class="cstat-no" title="statement not covered" >  this.latestBlock = obj.info.latest_block;</span>
+<span class="cstat-no" title="statement not covered" >  obj.addresses.forEach(updateAccountAndAddressesInfo.bind(this));</span>
+<span class="cstat-no" title="statement not covered" >  this.txList.pushTxs(obj.txs);</span>
+<span class="cstat-no" title="statement not covered" >  WalletStore.sendEvent('did_multiaddr');</span>
+<span class="cstat-no" title="statement not covered" >  return obj.txs.length;</span>
+};
+&nbsp;
+Wallet.prototype.getHistory = function () <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  return API.getHistory(this.context, 0, 0, this.txList.loadNumber)</span>
+    .then(function (obj) <span class="fstat-no" title="function not covered" >{ <span class="cstat-no" title="statement not covered" >this.txList.wipe(); <span class="cstat-no" title="statement not covered" ></span>return obj; </span>}.</span>bind(this))
+    .then(this._updateWalletInfo.bind(this));
+};
+&nbsp;
+Wallet.prototype.fetchTransactions = function () <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  return API.getHistory(this.context, 0, this.txList.fetched, this.txList.loadNumber)</span>
+    .then(this._updateWalletInfo.bind(this));
+};
+&nbsp;
+Wallet.prototype.getBalancesForArchived = function () <span class="fstat-no" title="function not covered" >{</span>
+  var updateBalance = <span class="cstat-no" title="statement not covered" >function (key) <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >    if (this.containsLegacyAddress(key.address)) {</span>
+<span class="cstat-no" title="statement not covered" >      this.key(key.address).balance = key.final_balance;</span>
+    }
+  };
+  var updateBalances = <span class="cstat-no" title="statement not covered" >function (obj) <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >    obj.addresses.forEach(updateBalance.bind(this));</span>
+<span class="cstat-no" title="statement not covered" >    return obj;</span>
+  };
+  var archivedAddrs = <span class="cstat-no" title="statement not covered" >this.addresses.filter(function (addr) <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >    return MyWallet.wallet.key(addr).archived === true;</span>
+  });
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return API.getHistory(archivedAddrs, 0, 0, 1).then(updateBalances.bind(this));</span>
+};
+&nbsp;
+Wallet.prototype.toJSON = function () {
+  function addressBookToJSON (addressBook) {
+    return Object.keys(addressBook)
+             .map(function (a) { return {addr: a, label: addressBook[a]}; });
+  }
+&nbsp;
+  return {
+    guid: this.guid,
+    sharedKey: this.sharedKey,
+    double_encryption: this.isDoubleEncrypted,
+    dpasswordhash: this.dpasswordhash,
+    metadataHDNode: this._metadataHDNode &amp;&amp; this._metadataHDNode.toBase58(),
+    options: {
+      pbkdf2_iterations: this.pbkdf2_iterations,
+      fee_per_kb: this.fee_per_kb,
+      html5_notifications: this._html5_notifications,
+      logout_time: this._logout_time
+    },
+    address_book: addressBookToJSON(this._address_book),
+    tx_notes: this._tx_notes,
+    // tx_tags           : this._tx_tags,
+    tx_names: this._tx_names,
+    keys: this.keys,
+    hd_wallets: Helpers.isEmptyArray(this._hd_wallets) ? <span class="branch-0 cbranch-no" title="branch not covered" >undefined </span>: this._hd_wallets
+  };
+};
+&nbsp;
+Wallet.prototype.addKeyToLegacyAddress = function (privateKey, addr, secPass, bipPass) <span class="fstat-no" title="function not covered" >{</span>
+  var modifyAddress = <span class="cstat-no" title="statement not covered" >function (newKey) <span class="fstat-no" title="function not covered" >{</span></span>
+    var watchOnlyKey = <span class="cstat-no" title="statement not covered" >this._addresses[addr];</span>
+<span class="cstat-no" title="statement not covered" >    if (newKey.address !== watchOnlyKey.address) {</span>
+<span class="cstat-no" title="statement not covered" >      if (!this.containsLegacyAddress(newKey.address)) {</span>
+<span class="cstat-no" title="statement not covered" >        console.log(newKey);</span>
+<span class="cstat-no" title="statement not covered" >        return this.importLegacyAddress(privateKey, null, secPass, bipPass);</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        if (this.key(newKey.address).isWatchOnly) {</span>
+<span class="cstat-no" title="statement not covered" >          watchOnlyKey = this._addresses[newKey.address];</span>
+        } else {
+<span class="cstat-no" title="statement not covered" >          throw new Error('privateKeyOfAnotherNonWatchOnlyAddress');</span>
+        }
+      }
+    }
+<span class="cstat-no" title="statement not covered" >    watchOnlyKey._priv = newKey._priv;</span>
+<span class="cstat-no" title="statement not covered" >    if (this.isDoubleEncrypted) {</span>
+<span class="cstat-no" title="statement not covered" >      if (!secPass) { <span class="cstat-no" title="statement not covered" >throw new Error('second password needed'); </span>}</span>
+<span class="cstat-no" title="statement not covered" >      if (!this.validateSecondPassword(secPass)) { <span class="cstat-no" title="statement not covered" >throw new Error('wrong second password'); </span>}</span>
+      var cipher = <span class="cstat-no" title="statement not covered" >this.createCipher(secPass, 'enc');</span>
+<span class="cstat-no" title="statement not covered" >      watchOnlyKey.encrypt(cipher).persist();</span>
+    }
+<span class="cstat-no" title="statement not covered" >    MyWallet.syncWallet();</span>
+<span class="cstat-no" title="statement not covered" >    return watchOnlyKey;</span>
+  }.bind(this);
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (!this.containsLegacyAddress(addr)) {</span>
+<span class="cstat-no" title="statement not covered" >    return Promise.reject('addressNotPresentInWallet');</span>
+  } else <span class="cstat-no" title="statement not covered" >if (!this.key(addr).isWatchOnly) {</span>
+<span class="cstat-no" title="statement not covered" >    return Promise.reject('addressNotWatchOnly');</span>
+  } else {
+<span class="cstat-no" title="statement not covered" >    return Address.fromString(privateKey, null, bipPass).then(modifyAddress);</span>
+  }
+};
+&nbsp;
+Wallet.prototype.importLegacyAddress = function (addr, label, secPass, bipPass) <span class="fstat-no" title="function not covered" >{</span>
+  var importAddress = <span class="cstat-no" title="statement not covered" >function (ad) <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >    if (this.containsLegacyAddress(ad)) {</span>
+<span class="cstat-no" title="statement not covered" >      if (this.key(ad.address).isWatchOnly &amp;&amp; !ad.isWatchOnly) {</span>
+<span class="cstat-no" title="statement not covered" >        return this.addKeyToLegacyAddress(addr, ad.address, secPass, bipPass);</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        throw new Error('presentInWallet');</span>
+      }
+    }
+<span class="cstat-no" title="statement not covered" >    if (this.isDoubleEncrypted) {</span>
+<span class="cstat-no" title="statement not covered" >      if (!secPass) { <span class="cstat-no" title="statement not covered" >throw new Error('second password needed'); </span>}</span>
+<span class="cstat-no" title="statement not covered" >      if (!this.validateSecondPassword(secPass)) { <span class="cstat-no" title="statement not covered" >throw new Error('wrong second password'); </span>}</span>
+      var cipher = <span class="cstat-no" title="statement not covered" >this.createCipher(secPass, 'enc');</span>
+<span class="cstat-no" title="statement not covered" >      ad.encrypt(cipher).persist();</span>
+    }
+<span class="cstat-no" title="statement not covered" >    this._addresses[ad.address] = ad;</span>
+<span class="cstat-no" title="statement not covered" >    MyWallet.ws.subscribeToAddresses(ad.address);</span>
+<span class="cstat-no" title="statement not covered" >    MyWallet.syncWallet();</span>
+<span class="cstat-no" title="statement not covered" >    this.getHistory();</span>
+<span class="cstat-no" title="statement not covered" >    return ad;</span>
+  }.bind(this);
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return Address.fromString(addr, label, bipPass).then(importAddress);</span>
+};
+&nbsp;
+Wallet.prototype.containsLegacyAddress = function (address) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  if (Helpers.isInstanceOf(address, Address)) <span class="cstat-no" title="statement not covered" >address = address.address;</span></span>
+<span class="cstat-no" title="statement not covered" >  return this._addresses.hasOwnProperty(address);</span>
+};
+&nbsp;
+Wallet.prototype.newLegacyAddress = function (label, pw, success, error) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  try {</span>
+    // This method might throw if the RNG fails:
+    var ad = <span class="cstat-no" title="statement not covered" >Address.new(label);</span>
+  } catch (e) {
+<span class="cstat-no" title="statement not covered" >    error(e);</span>
+<span class="cstat-no" title="statement not covered" >    return;</span>
+  }
+<span class="cstat-no" title="statement not covered" >  if (this.isDoubleEncrypted) {</span>
+<span class="cstat-no" title="statement not covered" >    assert(pw, 'Error: second password needed');</span>
+    var cipher = <span class="cstat-no" title="statement not covered" >this.createCipher(pw, 'enc');</span>
+<span class="cstat-no" title="statement not covered" >    ad.encrypt(cipher).persist();</span>
+  }
+<span class="cstat-no" title="statement not covered" >  this._addresses[ad.address] = ad;</span>
+<span class="cstat-no" title="statement not covered" >  MyWallet.syncWallet(success, error);</span>
+<span class="cstat-no" title="statement not covered" >  return ad;</span>
+};
+&nbsp;
+Wallet.prototype.deleteLegacyAddress = function (a) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  assert(a, 'Error: address needed');</span>
+<span class="cstat-no" title="statement not covered" >  if (this.containsLegacyAddress(a)) {</span>
+<span class="cstat-no" title="statement not covered" >    delete this._addresses[a.address];</span>
+<span class="cstat-no" title="statement not covered" >    MyWallet.syncWallet();</span>
+<span class="cstat-no" title="statement not covered" >    return true;</span>
+  }
+<span class="cstat-no" title="statement not covered" >  return false;</span>
+};
+&nbsp;
+// Wallet.prototype.setDefaultPbkdf2Iterations = function () {
+//   this._pbkdf2_iterations = 5000;
+//   MyWallet.syncWallet();
+//   return this;
+// };
+&nbsp;
+Wallet.prototype.validateSecondPassword = function (inputString) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  if (!this._pbkdf2_iterations) {</span>
+    var passHash1 = <span class="cstat-no" title="statement not covered" >WalletCrypto.hashNTimes(this._sharedKey + inputString, 1);</span>
+    var passHash10 = <span class="cstat-no" title="statement not covered" >WalletCrypto.hashNTimes(this._sharedKey + inputString, 10);</span>
+<span class="cstat-no" title="statement not covered" >    switch (this._dpasswordhash) {</span>
+      case passHash1:
+<span class="cstat-no" title="statement not covered" >        this._pbkdf2_iterations = 1;</span>
+<span class="cstat-no" title="statement not covered" >        break;</span>
+      case passHash10:
+<span class="cstat-no" title="statement not covered" >        this._pbkdf2_iterations = 10;</span>
+<span class="cstat-no" title="statement not covered" >        break;</span>
+      default:
+        var err = <span class="cstat-no" title="statement not covered" >'UNKNOWN_SEC_PASS_PBKDF_ITERATIONS';</span>
+<span class="cstat-no" title="statement not covered" >        throw err;</span>
+    }
+  }
+  var it = <span class="cstat-no" title="statement not covered" >this._pbkdf2_iterations;</span>
+  var passwordHash = <span class="cstat-no" title="statement not covered" >WalletCrypto.hashNTimes(this._sharedKey + inputString, it);</span>
+<span class="cstat-no" title="statement not covered" >  return passwordHash === this._dpasswordhash;</span>
+};
+&nbsp;
+Wallet.prototype.createCipher = function (secPass, type) <span class="fstat-no" title="function not covered" >{</span>
+  let cipher = <span class="cstat-no" title="statement not covered" >WalletCrypto.cipherFunction.bind(void 0, secPass, this._sharedKey, this._pbkdf2_iterations);</span>
+<span class="cstat-no" title="statement not covered" >  return type ? cipher(type) : cipher;</span>
+};
+&nbsp;
+Wallet.prototype.encrypt = function (pw, success, error, encrypting, syncing) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  encrypting &amp;&amp; encrypting();</span>
+<span class="cstat-no" title="statement not covered" >  try {</span>
+<span class="cstat-no" title="statement not covered" >    if (!this.isDoubleEncrypted) {</span>
+      var g = <span class="cstat-no" title="statement not covered" >this.createCipher(pw, 'enc');</span>
+      var f = <span class="cstat-no" title="statement not covered" >function (element) <span class="fstat-no" title="function not covered" >{ <span class="cstat-no" title="statement not covered" >element.encrypt(g); </span>};</span></span>
+<span class="cstat-no" title="statement not covered" >      this.keys.forEach(f);</span>
+<span class="cstat-no" title="statement not covered" >      this._hd_wallets.forEach(f);</span>
+    } else {
+      // already encrypted
+<span class="cstat-no" title="statement not covered" >      return this;</span>
+    }
+  } catch (e) {
+<span class="cstat-no" title="statement not covered" >    console.log('wallet encryption failure');</span>
+<span class="cstat-no" title="statement not covered" >    error &amp;&amp; error(e);</span>
+<span class="cstat-no" title="statement not covered" >    return false;</span>
+  }
+  // if encryption finished well, then save
+<span class="cstat-no" title="statement not covered" >  this._dpasswordhash = WalletCrypto.hashNTimes(this._sharedKey + pw, this._pbkdf2_iterations);</span>
+<span class="cstat-no" title="statement not covered" >  this._double_encryption = true;</span>
+  var p = <span class="cstat-no" title="statement not covered" >function (element) <span class="fstat-no" title="function not covered" >{ <span class="cstat-no" title="statement not covered" >element.persist(); </span>};</span></span>
+<span class="cstat-no" title="statement not covered" >  this.keys.forEach(p);</span>
+<span class="cstat-no" title="statement not covered" >  this._hd_wallets.forEach(p);</span>
+<span class="cstat-no" title="statement not covered" >  syncing &amp;&amp; syncing();</span>
+<span class="cstat-no" title="statement not covered" >  if (success) {</span>
+<span class="cstat-no" title="statement not covered" >    MyWallet.syncWallet(success.bind(undefined, this));</span>
+  } else {
+<span class="cstat-no" title="statement not covered" >    MyWallet.syncWallet();</span>
+  }
+<span class="cstat-no" title="statement not covered" >  return this;</span>
+};
+&nbsp;
+Wallet.prototype.decrypt = function (pw, success, error, decrypting, syncing) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  decrypting &amp;&amp; decrypting();</span>
+<span class="cstat-no" title="statement not covered" >  try {</span>
+<span class="cstat-no" title="statement not covered" >    if (this.isDoubleEncrypted) {</span>
+      var g = <span class="cstat-no" title="statement not covered" >this.createCipher(pw, 'dec');</span>
+      var f = <span class="cstat-no" title="statement not covered" >function (element) <span class="fstat-no" title="function not covered" >{ <span class="cstat-no" title="statement not covered" >element.decrypt(g); </span>};</span></span>
+<span class="cstat-no" title="statement not covered" >      this.keys.forEach(f);</span>
+<span class="cstat-no" title="statement not covered" >      this._hd_wallets.forEach(f);</span>
+    } else {
+      // already decrypted
+<span class="cstat-no" title="statement not covered" >      return this;</span>
+    }
+  } catch (e) {
+<span class="cstat-no" title="statement not covered" >    console.log('wallet decryption failure');</span>
+<span class="cstat-no" title="statement not covered" >    error &amp;&amp; error(e);</span>
+<span class="cstat-no" title="statement not covered" >    return false;</span>
+  }
+  // if encryption finished well, then save
+<span class="cstat-no" title="statement not covered" >  this._dpasswordhash = undefined;</span>
+<span class="cstat-no" title="statement not covered" >  this._double_encryption = false;</span>
+  var p = <span class="cstat-no" title="statement not covered" >function (element) <span class="fstat-no" title="function not covered" >{ <span class="cstat-no" title="statement not covered" >element.persist(); </span>};</span></span>
+<span class="cstat-no" title="statement not covered" >  this.keys.forEach(p);</span>
+<span class="cstat-no" title="statement not covered" >  this._hd_wallets.forEach(p);</span>
+<span class="cstat-no" title="statement not covered" >  syncing &amp;&amp; syncing();</span>
+<span class="cstat-no" title="statement not covered" >  if (success) {</span>
+<span class="cstat-no" title="statement not covered" >    MyWallet.syncWallet(success.bind(undefined, this));</span>
+  } else {
+<span class="cstat-no" title="statement not covered" >    MyWallet.syncWallet();</span>
+  }
+<span class="cstat-no" title="statement not covered" >  return this;</span>
+};
+&nbsp;
+Wallet.reviver = function (k, v) {
+  if (k === '') { return new Wallet(v); }
+  return v;
+};
+&nbsp;
+function isAccountNonUsed (account, progress) <span class="fstat-no" title="function not covered" >{</span>
+  var isNonUsed = <span class="cstat-no" title="statement not covered" >function (obj) <span class="fstat-no" title="function not covered" >{</span></span>
+    var result = <span class="cstat-no" title="statement not covered" >obj[account.extendedPublicKey];</span>
+<span class="cstat-no" title="statement not covered" >    progress &amp;&amp; progress(result);</span>
+<span class="cstat-no" title="statement not covered" >    return result.total_received === 0;</span>
+  };
+<span class="cstat-no" title="statement not covered" >  return API.getBalances([account.extendedPublicKey]).then(isNonUsed);</span>
+}
+&nbsp;
+Wallet.prototype.scanBip44 = function (secondPassword, progress) <span class="fstat-no" title="function not covered" >{</span>
+  var self = <span class="cstat-no" title="statement not covered" >this;</span>
+  var accountIndex = <span class="cstat-no" title="statement not covered" >1;</span>
+  var AccountsGap = <span class="cstat-no" title="statement not covered" >10;</span>
+<span class="cstat-no" title="statement not covered" >  isAccountNonUsed(self.hdwallet._accounts[0], progress);</span>
+&nbsp;
+  var untilNEmptyAccounts = <span class="cstat-no" title="statement not covered" >function (n) <span class="fstat-no" title="function not covered" >{</span></span>
+    var go = <span class="cstat-no" title="statement not covered" >function (nonused) <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >      return untilNEmptyAccounts(nonused ? n - 1 : AccountsGap);</span>
+    };
+<span class="cstat-no" title="statement not covered" >    if (n === 0) {</span>
+<span class="cstat-no" title="statement not covered" >      self.hdwallet._accounts.splice(-AccountsGap);</span>
+<span class="cstat-no" title="statement not covered" >      return true;</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      accountIndex++;</span>
+      var account = <span class="cstat-no" title="statement not covered" >self.newAccount('My Bitcoin Wallet ' + accountIndex.toString(), secondPassword, 0, undefined, true);</span>
+<span class="cstat-no" title="statement not covered" >      return isAccountNonUsed(account, progress).then(go);</span>
+    }
+  };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return untilNEmptyAccounts(AccountsGap);</span>
+};
+&nbsp;
+// Enables email notifications for receiving bitcoins. Only for imported
+// and labeled HD addresses.
+Wallet.prototype.enableNotifications = function (success, error) {
+  assert(success, 'Success callback required');
+  assert(error, 'Error callback required');
+  BlockchainSettingsAPI.enableEmailReceiveNotifications(success, error);
+};
+&nbsp;
+Wallet.prototype.disableNotifications = function (success, error) {
+  assert(success, 'Success callback required');
+  assert(error, 'Error callback required');
+  BlockchainSettingsAPI.disableAllNotifications(success, error);
+};
+&nbsp;
+// creating a new wallet object
+Wallet.new = function (guid, sharedKey, mnemonic, bip39Password, firstAccountLabel, success, error) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  assert(mnemonic, 'BIP 39 mnemonic required');</span>
+&nbsp;
+  var object = <span class="cstat-no" title="statement not covered" >{</span>
+    guid: guid,
+    sharedKey: sharedKey,
+    double_encryption: false,
+    options: constants.getDefaultWalletOptions()
+  };
+<span class="cstat-no" title="statement not covered" >  MyWallet.wallet = new Wallet(object);</span>
+  var label = <span class="cstat-no" title="statement not covered" >firstAccountLabel || 'My Bitcoin Wallet';</span>
+<span class="cstat-no" title="statement not covered" >  try {</span>
+    var hd = <span class="cstat-no" title="statement not covered" >HDWallet.new(mnemonic, bip39Password);</span>
+<span class="cstat-no" title="statement not covered" >    MyWallet.wallet._hd_wallets.push(hd);</span>
+<span class="cstat-no" title="statement not covered" >    hd.newAccount(label);</span>
+  } catch (e) { <span class="cstat-no" title="statement not covered" >error(e); <span class="cstat-no" title="statement not covered" ></span>return; </span>}
+<span class="cstat-no" title="statement not covered" >  success(MyWallet.wallet);</span>
+};
+&nbsp;
+// Adds an HD wallet to an existing wallet, used by frontend and iOs
+Wallet.prototype.upgradeToV3 = function (firstAccountLabel, pw, success, error) <span class="fstat-no" title="function not covered" >{</span>
+  var encoder = <span class="cstat-no" title="statement not covered" >this.createCipher(pw, 'enc');</span>
+<span class="cstat-no" title="statement not covered" >  try {</span>
+    var mnemonic = <span class="cstat-no" title="statement not covered" >BIP39.generateMnemonic(undefined, RNG.run.bind(RNG));</span>
+    var hd = <span class="cstat-no" title="statement not covered" >HDWallet.new(mnemonic, undefined, encoder);</span>
+  } catch (e) { <span class="cstat-no" title="statement not covered" >error(e); <span class="cstat-no" title="statement not covered" ></span>return; </span>}
+<span class="cstat-no" title="statement not covered" >  this._hd_wallets.push(hd);</span>
+  var label = <span class="cstat-no" title="statement not covered" >firstAccountLabel || 'My Bitcoin Wallet';</span>
+<span class="cstat-no" title="statement not covered" >  this.newAccount(label, pw, this._hd_wallets.length - 1, true);</span>
+<span class="cstat-no" title="statement not covered" >  this.cacheMetadataKey(pw);</span>
+<span class="cstat-no" title="statement not covered" >  this.loadMetadata();</span>
+<span class="cstat-no" title="statement not covered" >  MyWallet.syncWallet(function (res) <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >    success();</span>
+  }, error);
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return hd;</span>
+};
+&nbsp;
+Wallet.prototype.newAccount = function (label, pw, hdwalletIndex, success, nosave) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  if (!this.isUpgradedToHD) { <span class="cstat-no" title="statement not covered" >return false; </span>}</span>
+  var index = <span class="cstat-no" title="statement not covered" >Helpers.isPositiveInteger(hdwalletIndex) ? hdwalletIndex : 0;</span>
+  var cipher;
+<span class="cstat-no" title="statement not covered" >  if (this.isDoubleEncrypted) {</span>
+<span class="cstat-no" title="statement not covered" >    cipher = this.createCipher(pw);</span>
+  }
+  var newAccount = <span class="cstat-no" title="statement not covered" >this._hd_wallets[index].newAccount(label, cipher).lastAccount;</span>
+<span class="cstat-no" title="statement not covered" >  try { // MyWallet.ws.send can fail when restoring from mnemonic because it is not initialized.</span>
+<span class="cstat-no" title="statement not covered" >    MyWallet.ws.subscribeToXpubs(newAccount.extendedPublicKey);</span>
+  } catch (e) {}
+<span class="cstat-no" title="statement not covered" >  if (!(nosave === true)) <span class="cstat-no" title="statement not covered" >MyWallet.syncWallet();</span></span>
+<span class="cstat-no" title="statement not covered" >  typeof (success) === 'function' &amp;&amp; success();</span>
+<span class="cstat-no" title="statement not covered" >  return newAccount;</span>
+};
+&nbsp;
+Wallet.prototype.getAddressBookLabel = function (address) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  return this._address_book[address];</span>
+};
+&nbsp;
+Wallet.prototype.addAddressBookEntry = function (address, label) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  this._address_book[address] = label;</span>
+<span class="cstat-no" title="statement not covered" >  MyWallet.syncWallet();</span>
+};
+&nbsp;
+Wallet.prototype.removeAddressBookEntry = function (address) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  delete this._address_book[address];</span>
+<span class="cstat-no" title="statement not covered" >  MyWallet.syncWallet();</span>
+};
+&nbsp;
+Wallet.prototype.getNote = function (txHash) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  return this._tx_notes[txHash];</span>
+};
+&nbsp;
+Wallet.prototype.setNote = function (txHash, text) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  assert(text, 'Error: note must have message text');</span>
+<span class="cstat-no" title="statement not covered" >  this._tx_notes[txHash] = text;</span>
+<span class="cstat-no" title="statement not covered" >  MyWallet.syncWallet();</span>
+};
+&nbsp;
+Wallet.prototype.deleteNote = function (txHash) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  delete this._tx_notes[txHash];</span>
+<span class="cstat-no" title="statement not covered" >  MyWallet.syncWallet();</span>
+};
+&nbsp;
+Wallet.prototype.getMnemonic = function (password) <span class="fstat-no" title="function not covered" >{</span>
+  var seedHex = <span class="cstat-no" title="statement not covered" >this.isDoubleEncrypted</span>
+      ? WalletCrypto.decryptSecretWithSecondPassword(this.hdwallet.seedHex, password, this.sharedKey, this.pbkdf2_iterations)
+      : this.hdwallet.seedHex;
+<span class="cstat-no" title="statement not covered" >  return BIP39.entropyToMnemonic(seedHex);</span>
+};
+&nbsp;
+Wallet.prototype.changePbkdf2Iterations = function (newIterations, password) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  assert(Helpers.isPositiveInteger(newIterations), 'wallet.pbkdf2_iterations must be a positive integer');</span>
+<span class="cstat-no" title="statement not covered" >  if (newIterations !== this._pbkdf2_iterations) {</span>
+<span class="cstat-no" title="statement not covered" >    if (this.isDoubleEncrypted) {</span>
+<span class="cstat-no" title="statement not covered" >      this.decrypt(password);</span>
+<span class="cstat-no" title="statement not covered" >      this._pbkdf2_iterations = newIterations; </span>        // sec pass iterations
+<span class="cstat-no" title="statement not covered" >      WalletStore.setPbkdf2Iterations(newIterations); </span> // main pass iterations
+<span class="cstat-no" title="statement not covered" >      this.encrypt(password);</span>
+    } else { // no double encrypted wallet
+<span class="cstat-no" title="statement not covered" >      this._pbkdf2_iterations = newIterations; </span>       // sec pass iterations
+<span class="cstat-no" title="statement not covered" >      WalletStore.setPbkdf2Iterations(newIterations); </span>// main pass iterations
+<span class="cstat-no" title="statement not covered" >      MyWallet.syncWallet();</span>
+    }
+  }
+<span class="cstat-no" title="statement not covered" >  return true;</span>
+};
+&nbsp;
+Wallet.prototype.getPrivateKeyForAddress = function (address, secondPassword) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  assert(address, 'Error: address must be defined');</span>
+  var pk = <span class="cstat-no" title="statement not covered" >null;</span>
+<span class="cstat-no" title="statement not covered" >  if (!address.isWatchOnly) {</span>
+<span class="cstat-no" title="statement not covered" >    pk = this.isDoubleEncrypted</span>
+        ? WalletCrypto.decryptSecretWithSecondPassword(address.priv, secondPassword, this.sharedKey, this.pbkdf2_iterations)
+        : address.priv;
+  }
+<span class="cstat-no" title="statement not covered" >  return pk;</span>
+};
+&nbsp;
+Wallet.prototype.getWIFForAddress = function (address, secondPassword) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  assert(address, 'Error: address must be defined');</span>
+  var pkString = <span class="cstat-no" title="statement not covered" >this.getPrivateKeyForAddress(address, secondPassword);</span>
+<span class="cstat-no" title="statement not covered" >  if (pkString != null) {</span>
+    var key = <span class="cstat-no" title="statement not covered" >Helpers.privateKeyStringToKey(pkString, 'base58');</span>
+<span class="cstat-no" title="statement not covered" >    if (key.getAddress() !== address.address) {</span>
+<span class="cstat-no" title="statement not covered" >      key.compressed = !key.compressed;</span>
+    }
+<span class="cstat-no" title="statement not covered" >    return key.toWIF();</span>
+  } else {
+<span class="cstat-no" title="statement not covered" >    return null;</span>
+  }
+};
+Wallet.prototype._getPrivateKey = function (accountIndex, path, secondPassword) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  assert(this.hdwallet.isValidAccountIndex(accountIndex), 'Error: account non-existent');</span>
+<span class="cstat-no" title="statement not covered" >  assert(Helpers.isString(path), 'Error: path must be an string of the form \'M/0/27\'');</span>
+  var maybeXpriv = <span class="cstat-no" title="statement not covered" >this.hdwallet.accounts[accountIndex].extendedPrivateKey;</span>
+  var xpriv = <span class="cstat-no" title="statement not covered" >this.isDoubleEncrypted</span>
+      ? WalletCrypto.decryptSecretWithSecondPassword(maybeXpriv, secondPassword, this.sharedKey, this.pbkdf2_iterations)
+      : maybeXpriv;
+  var kr = <span class="cstat-no" title="statement not covered" >new KeyRing(xpriv, null);</span>
+<span class="cstat-no" title="statement not covered" >  return kr.privateKeyFromPath(path).keyPair.toWIF();</span>
+};
+&nbsp;
+Wallet.prototype.fetchAccountInfo = function () <span class="fstat-no" title="function not covered" >{</span>
+  var parentThis = <span class="cstat-no" title="statement not covered" >this;</span>
+<span class="cstat-no" title="statement not covered" >  return BlockchainSettingsAPI.fetchAccountInfo().then(function (info) <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >    parentThis._accountInfo = new AccountInfo(info);</span>
+<span class="cstat-no" title="statement not covered" >    return info; </span>// TODO: handle more here instead of in the frontend / iOs
+  });
+};
+&nbsp;
+Wallet.prototype.metadata = function (typeId) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  return Metadata.fromMetadataHDNode(this._metadataHDNode, typeId);</span>
+};
+&nbsp;
+// This sets:
+// * wallet.external (buy-sell, KV Store type 3)
+// * wallet.labels (not yet using KV Store)
+Wallet.prototype.loadMetadata = function (optionalPayloads, magicHashes) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  optionalPayloads = optionalPayloads || {};</span>
+&nbsp;
+  var self = <span class="cstat-no" title="statement not covered" >this;</span>
+&nbsp;
+  var fetchExternal = <span class="cstat-no" title="statement not covered" >function () <span class="fstat-no" title="function not covered" >{</span></span>
+    var success = <span class="cstat-no" title="statement not covered" >function (external) <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >      self._external = external;</span>
+    };
+&nbsp;
+    var error = <span class="cstat-no" title="statement not covered" >function (message) <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >      console.warn('wallet.external not set:', message);</span>
+<span class="cstat-no" title="statement not covered" >      self._external = null;</span>
+<span class="cstat-no" title="statement not covered" >      return Promise.resolve();</span>
+    };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (optionalPayloads.external) {</span>
+<span class="cstat-no" title="statement not covered" >      return External.fromJSON(this, optionalPayloads.external, magicHashes.external).then(success);</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      return External.fetch(this).then(success).catch(error);</span>
+    }
+  };
+&nbsp;
+  var fetchLabels = <span class="cstat-no" title="statement not covered" >function () <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >    this._labels = new Labels(this, MyWallet.syncWallet);</span>
+<span class="cstat-no" title="statement not covered" >    return Promise.resolve();</span>
+  };
+&nbsp;
+  var fetchEthWallet = <span class="cstat-no" title="statement not covered" >function () <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >    this._eth = EthWallet.fromBlockchainWallet(this);</span>
+    let wsUrl = <span class="cstat-no" title="statement not covered" >MyWallet.ws.wsUrl.replace('/inv', '/eth/inv');</span>
+<span class="cstat-no" title="statement not covered" >    return this._eth.fetch()</span>
+      .then(() =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >this._eth.transitionFromLegacy())</span></span>
+      .then(() =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >this._eth.connect(wsUrl))</span></span>;
+  };
+&nbsp;
+  var fetchBchWallet = <span class="cstat-no" title="statement not covered" >function () <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >    this._bch = BitcoinCash.fromBlockchainWallet(this);</span>
+    let wsUrl = <span class="cstat-no" title="statement not covered" >MyWallet.ws.wsUrl.replace('/inv', '/bch/inv');</span>
+<span class="cstat-no" title="statement not covered" >    return this._bch.fetch()</span>
+      .then(() =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >this._bch.connect(wsUrl))</span></span>;
+  };
+&nbsp;
+  var fetchShapeShift = <span class="cstat-no" title="statement not covered" >function () <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >    this._shapeshift = ShapeShift.fromBlockchainWallet(this, constants.SHAPE_SHIFT_KEY);</span>
+<span class="cstat-no" title="statement not covered" >    return this._shapeshift.fetch();</span>
+  };
+&nbsp;
+  let promises = <span class="cstat-no" title="statement not covered" >[];</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (this.isMetadataReady) {</span>
+    // No fallback is metadata is disabled
+<span class="cstat-no" title="statement not covered" >    promises.push(fetchExternal.call(this));</span>
+<span class="cstat-no" title="statement not covered" >    promises.push(fetchEthWallet.call(this));</span>
+<span class="cstat-no" title="statement not covered" >    promises.push(fetchShapeShift.call(this));</span>
+<span class="cstat-no" title="statement not covered" >    promises.push(fetchBchWallet.call(this));</span>
+  }
+&nbsp;
+  // Labels only works for v3 wallets
+<span class="cstat-no" title="statement not covered" >  if (this.isUpgradedToHD) {</span>
+    // Labels currently don't use the KV Store, so this should never fail.
+<span class="cstat-no" title="statement not covered" >    promises.push(fetchLabels.call(this));</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return Promise.all(promises);</span>
+};
+&nbsp;
+Wallet.prototype.incStats = function () <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  API.incrementSecPassStats(this.isDoubleEncrypted);</span>
+<span class="cstat-no" title="statement not covered" >  return true;</span>
+};
+&nbsp;
+Wallet.prototype.saveGUIDtoMetadata = function () <span class="fstat-no" title="function not covered" >{</span>
+  var setOrCheckGuid = <span class="cstat-no" title="statement not covered" >function (res) <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >    if (res === null) {</span>
+<span class="cstat-no" title="statement not covered" >      return m.create({ guid: MyWallet.wallet.guid });</span>
+    } else <span class="cstat-no" title="statement not covered" >if (!res || !res.guid || res.guid !== MyWallet.wallet.guid) {</span>
+<span class="cstat-no" title="statement not covered" >      return Promise.reject();</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      return res.guid;</span>
+    }
+  };
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (this.isMetadataReady) {</span>
+    var GUID_METADATA_TYPE = <span class="cstat-no" title="statement not covered" >0;</span>
+    var m = <span class="cstat-no" title="statement not covered" >this.metadata(GUID_METADATA_TYPE);</span>
+<span class="cstat-no" title="statement not covered" >    return m.fetch().then(setOrCheckGuid);</span>
+  } else {
+<span class="cstat-no" title="statement not covered" >    return Promise.reject();</span>
+  }
+};
+&nbsp;
+Wallet.prototype.createPayment = function (initialState) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  return new Payment(this, initialState);</span>
+};
+&nbsp;
+Wallet.prototype.cacheMetadataKey = function (secondPassword) <span class="fstat-no" title="function not covered" >{</span>
+  var cipher;
+<span class="cstat-no" title="statement not covered" >  if (this.isDoubleEncrypted) {</span>
+<span class="cstat-no" title="statement not covered" >    if (!secondPassword) <span class="cstat-no" title="statement not covered" >return Promise.reject('second password needed');</span></span>
+<span class="cstat-no" title="statement not covered" >    if (!this.validateSecondPassword(secondPassword)) <span class="cstat-no" title="statement not covered" >return Promise.reject('wrong second password');</span></span>
+<span class="cstat-no" title="statement not covered" >    cipher = this.createCipher(secondPassword);</span>
+  }
+<span class="cstat-no" title="statement not covered" >  this._metadataHDNode = Metadata.deriveMetadataNode(this.hdwallet.getMasterHDNode(cipher));</span>
+<span class="cstat-no" title="statement not covered" >  MyWallet.syncWallet();</span>
+<span class="cstat-no" title="statement not covered" >  return Promise.resolve();</span>
+};
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Jul 05 2018 15:15:20 GMT+0300 (Turkey Standard Time)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

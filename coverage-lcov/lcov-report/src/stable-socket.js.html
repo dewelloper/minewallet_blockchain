@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src\stable-socket.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">src/</a> stable-socket.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">96.15% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>50/52</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>23/23</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">95.45% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>21/22</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">97.78% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>44/45</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103</td><td class="line-coverage quiet"><span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">282×</span>
+<span class="cline-any cline-yes">282×</span>
+<span class="cline-any cline-yes">282×</span>
+<span class="cline-any cline-yes">282×</span>
+<span class="cline-any cline-yes">282×</span>
+<span class="cline-any cline-yes">282×</span>
+<span class="cline-any cline-yes">282×</span>
+<span class="cline-any cline-yes">282×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">220×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">598×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">760×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">219×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">200×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">220×</span>
+<span class="cline-any cline-yes">218×</span>
+<span class="cline-any cline-yes">218×</span>
+<span class="cline-any cline-yes">218×</span>
+<span class="cline-any cline-yes">218×</span>
+<span class="cline-any cline-yes">218×</span>
+<span class="cline-any cline-yes">218×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">616×</span>
+<span class="cline-any cline-yes">597×</span>
+<span class="cline-any cline-yes">616×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">144×</span>
+<span class="cline-any cline-yes">144×</span>
+<span class="cline-any cline-yes">144×</span>
+<span class="cline-any cline-yes">144×</span>
+<span class="cline-any cline-yes">144×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">142×</span>
+<span class="cline-any cline-yes">142×</span>
+<span class="cline-any cline-yes">140×</span>
+<span class="cline-any cline-yes">140×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">285×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">144×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">145×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">643×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">143×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const EventEmitter = require('events');
+const Helpers = require('./helpers');
+&nbsp;
+const PING_INTERVAL = 15000;
+const PING_TIMEOUT = 5000;
+&nbsp;
+class StableSocket extends EventEmitter {
+  constructor (url, SocketClass) {
+    super();
+    this.wsUrl = url;
+    this.SocketClass = SocketClass;
+    this._headers = { 'Origin': 'https://blockchain.info' };
+    this._socket;
+    this._pingIntervalPID = null;
+    this._pingTimeoutPID = null;
+    this.setPongHandler();
+  }
+&nbsp;
+  get url () {
+    return this.wsUrl;
+  }
+&nbsp;
+  get isConnecting () {
+    return this._socket != null &amp;&amp; this._socket.readyState === this._socket.CONNECTING;
+  }
+&nbsp;
+  get isOpen () {
+    return this._socket != null &amp;&amp; this._socket.readyState === this._socket.OPEN;
+  }
+&nbsp;
+  get isClosing () {
+    return this._socket != null &amp;&amp; this._socket.readyState === this._socket.CLOSING;
+  }
+&nbsp;
+  get isClosed () {
+    return this._socket == null || this._socket.readyState === this._socket.CLOSED;
+  }
+&nbsp;
+  createSocket (url) {
+    return new this.SocketClass(url, [], { headers: this._headers });
+  }
+&nbsp;
+  connect () {
+    if (!Helpers.tor() &amp;&amp; this.isClosed) {
+      try {
+        this._pingIntervalPID = setInterval(this.ping.bind(this), PING_INTERVAL);
+        this._socket = this.createSocket(this.url);
+        this._socket.on('open', () =&gt; this.emit('open'));
+        this._socket.on('message', (message) =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >this.emit('message', message.data))</span></span>;
+        this._socket.on('close', () =&gt; this.emit('close'));
+      } catch (e) {
+<span class="cstat-no" title="statement not covered" >        console.error('Failed to connect to websocket', e);</span>
+      }
+    }
+  }
+&nbsp;
+  send (data) {
+    if (!Helpers.tor() &amp;&amp; this.isOpen) this._socket.send(data);
+    else if (this.isConnecting) this._socket.on('open', () =&gt; this.send(data));
+    return this;
+  }
+&nbsp;
+  close () {
+    if (this.isOpen) this._socket.close();
+    this._socket = null;
+    this.clearPingInterval();
+    this.clearPingTimeout();
+    return this;
+  }
+&nbsp;
+  ping () {
+    this.send(StableSocket.pingMessage());
+    this._pingTimeoutPID = setTimeout(() =&gt; {
+      this.close();
+      this.connect();
+    }, PING_TIMEOUT);
+  }
+&nbsp;
+  setPongHandler () {
+    this.on('message', (data) =&gt; {
+      JSON.parse(data).op === 'pong' &amp;&amp; this.clearPingTimeout();
+    });
+  }
+&nbsp;
+  clearPingInterval () {
+    clearInterval(this._pingIntervalPID);
+  }
+&nbsp;
+  clearPingTimeout () {
+    clearTimeout(this._pingTimeoutPID);
+  }
+&nbsp;
+  static op (op, data = {}) {
+    return JSON.stringify(Object.assign({ op }, data));
+  }
+&nbsp;
+  static pingMessage () {
+    return StableSocket.op('ping');
+  }
+}
+&nbsp;
+module.exports = StableSocket;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Jul 05 2018 15:15:20 GMT+0300 (Turkey Standard Time)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

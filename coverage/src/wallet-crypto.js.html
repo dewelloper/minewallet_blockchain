@@ -1,0 +1,1202 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src\wallet-crypto.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">src/</a> wallet-crypto.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">92.96% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>132/142</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">86.79% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>46/53</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">83.87% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>26/31</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">93.43% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>128/137</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">200×</span>
+<span class="cline-any cline-yes">200×</span>
+<span class="cline-any cline-yes">200×</span>
+<span class="cline-any cline-yes">200×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">200×</span>
+<span class="cline-any cline-yes">200×</span>
+<span class="cline-any cline-yes">200×</span>
+<span class="cline-any cline-yes">200×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">200×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">200×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">36×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">200×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">200×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14×</span>
+<span class="cline-any cline-yes">14×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">200×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">200×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">53×</span>
+<span class="cline-any cline-yes">53×</span>
+<span class="cline-any cline-yes">53×</span>
+<span class="cline-any cline-yes">53×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">53×</span>
+<span class="cline-any cline-yes">53×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">53×</span>
+<span class="cline-any cline-yes">51×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">51×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">28×</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-yes">17×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24×</span>
+<span class="cline-any cline-yes">24×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24×</span>
+<span class="cline-any cline-yes">22×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">23×</span>
+<span class="cline-any cline-yes">23×</span>
+<span class="cline-any cline-yes">23×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">23×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">23×</span>
+<span class="cline-any cline-yes">23×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">23×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">23×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">23×</span>
+<span class="cline-any cline-yes">21×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24×</span>
+<span class="cline-any cline-yes">24×</span>
+<span class="cline-any cline-yes">24×</span>
+<span class="cline-any cline-yes">24×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24×</span>
+<span class="cline-any cline-yes">24×</span>
+<span class="cline-any cline-yes">24×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">26×</span>
+<span class="cline-any cline-yes">26×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">200×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+&nbsp;
+var crypto = require('crypto');
+var assert = require('assert');
+var scrypt = require('scryptsy');
+var { pbkdf2Sync } = require('pbkdf2');
+&nbsp;
+var SUPPORTED_ENCRYPTION_VERSION = 3;
+var SALT_BYTES = 16;
+var KEY_BIT_LEN = 256;
+var BLOCK_BIT_LEN = 128;
+&nbsp;
+var ALGO = {
+  SHA1: 'sha1',
+  SHA256: 'sha256'
+};
+&nbsp;
+var NoPadding = {
+  /*
+  *   Literally does nothing...
+  */
+&nbsp;
+  pad: function (dataBytes) {
+    return dataBytes;
+  },
+&nbsp;
+  unpad: function (dataBytes) {
+    return dataBytes;
+  }
+};
+&nbsp;
+var ZeroPadding = {
+  /*
+  *   Fills remaining block space with 0x00 bytes
+  *   May cause issues if data ends with any 0x00 bytes
+  */
+&nbsp;
+  pad: function (dataBytes, nBytesPerBlock) {
+    var nPaddingBytes = nBytesPerBlock - dataBytes.length % nBytesPerBlock;
+    var zeroBytes = new Buffer(nPaddingBytes).fill(0x00);
+    return Buffer.concat([ dataBytes, zeroBytes ]);
+  },
+&nbsp;
+  unpad: function (dataBytes) {
+    var unpaddedHex = dataBytes.toString('hex').replace(/(00)+$/, '');
+    return new Buffer(unpaddedHex, 'hex');
+  }
+};
+&nbsp;
+var Iso10126 = {
+  /*
+  *   Fills remaining block space with random byte values, except for the
+  *   final byte, which denotes the byte length of the padding
+  */
+&nbsp;
+  pad: function (dataBytes, nBytesPerBlock) {
+    var nPaddingBytes = nBytesPerBlock - dataBytes.length % nBytesPerBlock;
+    var paddingBytes = crypto.randomBytes(nPaddingBytes - 1);
+    var endByte = new Buffer([ nPaddingBytes ]);
+    return Buffer.concat([ dataBytes, paddingBytes, endByte ]);
+  },
+&nbsp;
+  unpad: function (dataBytes) {
+    var nPaddingBytes = dataBytes[dataBytes.length - 1];
+    return dataBytes.slice(0, -nPaddingBytes);
+  }
+};
+&nbsp;
+var Iso97971 = {
+  /*
+  *   Fills remaining block space with 0x00 bytes following a 0x80 byte,
+  *   which serves as a mark for where the padding begins
+  */
+&nbsp;
+  pad: function (dataBytes, nBytesPerBlock) {
+    var withStartByte = Buffer.concat([ dataBytes, new Buffer([ 0x80 ]) ]);
+    return ZeroPadding.pad(withStartByte, nBytesPerBlock);
+  },
+&nbsp;
+  unpad: function (dataBytes) {
+    var zeroBytesRemoved = ZeroPadding.unpad(dataBytes);
+    return zeroBytesRemoved.slice(0, zeroBytesRemoved.length - 1);
+  }
+};
+&nbsp;
+var AES = {
+  CBC: 'aes-256-cbc',
+  OFB: 'aes-256-ofb',
+  ECB: 'aes-256-ecb',
+&nbsp;
+  /*
+  *   Encrypt / Decrypt with aes-256
+  *   - dataBytes, key, and salt are expected to be buffers
+  *   - default options are mode=CBC and padding=auto (PKCS7)
+  */
+&nbsp;
+  encrypt: function (dataBytes, key, salt, options) {
+    options = options || <span class="branch-1 cbranch-no" title="branch not covered" >{};</span>
+    assert(Buffer.isBuffer(dataBytes), 'expected `dataBytes` to be a Buffer');
+    assert(Buffer.isBuffer(key), 'expected `key` to be a Buffer');
+    assert(Buffer.isBuffer(salt) || salt === null, 'expected `salt` to be a Buffer or null');
+&nbsp;
+    var cipher = crypto.createCipheriv(options.mode || AES.CBC, key, salt || '');
+    cipher.setAutoPadding(!options.padding);
+&nbsp;
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (options.padding) dataBytes = options.padding.pad(dataBytes, BLOCK_BIT_LEN / 8);
+    var encryptedBytes = Buffer.concat([ cipher.update(dataBytes), cipher.final() ]);
+&nbsp;
+    return encryptedBytes;
+  },
+&nbsp;
+  decrypt: function (dataBytes, key, salt, options) {
+    options = options || <span class="branch-1 cbranch-no" title="branch not covered" >{};</span>
+    assert(Buffer.isBuffer(dataBytes), 'expected `dataBytes` to be a Buffer');
+    assert(Buffer.isBuffer(key), 'expected `key` to be a Buffer');
+    assert(Buffer.isBuffer(salt) || salt === null, 'expected `salt` to be a Buffer or null');
+&nbsp;
+    var decipher = crypto.createDecipheriv(options.mode || AES.CBC, key, salt || '');
+    decipher.setAutoPadding(!options.padding);
+&nbsp;
+    var decryptedBytes = Buffer.concat([ decipher.update(dataBytes), decipher.final() ]);
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (options.padding) decryptedBytes = options.padding.unpad(decryptedBytes);
+&nbsp;
+    return decryptedBytes;
+  }
+};
+&nbsp;
+function encryptWallet (data, password, pbkdf2Iterations, version) {
+  assert(data, 'data missing');
+  assert(password, 'password missing');
+  assert(pbkdf2Iterations, 'pbkdf2Iterations missing');
+  assert(version, 'version missing');
+&nbsp;
+  return JSON.stringify({
+    pbkdf2_iterations: pbkdf2Iterations,
+    version: version,
+    payload: encryptDataWithPassword(data, password, pbkdf2Iterations)
+  });
+}
+&nbsp;
+function decryptWallet (data, password, success, error) {
+  try {
+    success(decryptWalletSync(data, password));
+  } catch (e) {
+    error(e &amp;&amp; e.message || <span class="branch-2 cbranch-no" title="branch not covered" >e)</span>;
+  }
+}
+&nbsp;
+function decryptWalletSync (data, password) {
+  assert(data, 'function `decryptWallet` requires encrypted wallet data');
+  assert(password, 'function `decryptWallet` requires a password');
+&nbsp;
+  var wrapper, version, decrypted;
+&nbsp;
+  try {
+    wrapper = JSON.parse(data);
+  } catch (e) {
+    version = 1;
+  }
+&nbsp;
+  if (wrapper) {
+    assert(wrapper.payload, 'v2 Wallet error: missing payload');
+    assert(wrapper.pbkdf2_iterations, 'v2 Wallet error: missing pbkdf2 iterations');
+    assert(wrapper.version, 'v2 Wallet error: missing version');
+    version = wrapper.version;
+  }
+&nbsp;
+  if (version &gt; SUPPORTED_ENCRYPTION_VERSION) {
+    throw new Error('Wallet version ' + version + ' not supported.');
+  }
+&nbsp;
+  try {
+    // v2/v3: CBC, ISO10126, iterations in wrapper
+    decrypted = decryptDataWithPassword(wrapper.payload, password, wrapper.pbkdf2_iterations);
+    decrypted = JSON.parse(decrypted);
+  } catch (e) {
+    decrypted = decryptWalletV1(data, password);
+  } finally {
+    assert(decrypted, 'Error decrypting wallet, please check that your password is correct');
+    return decrypted; // eslint-disable-line no-unsafe-finally
+  }
+}
+&nbsp;
+function decryptWalletV1 (data, password) {
+  // Possible decryption methods for v1 wallets
+  var decryptFns = [
+    // v1: CBC, ISO10126, 10 iterations
+    decryptDataWithPassword.bind(null, data, password, 10),
+&nbsp;
+    // v1: OFB, nopad, 1 iteration
+    decryptDataWithPassword.bind(null, data, password, 1, {
+      mode: AES.OFB,
+      padding: NoPadding
+    }),
+&nbsp;
+    // v1: OFB, ISO7816, 1 iteration
+    // ISO/IEC 9797-1 Padding method 2 is the same as ISO/IEC 7816-4:2005
+    decryptDataWithPassword.bind(null, data, password, 1, {
+      mode: AES.OFB,
+      padding: Iso97971
+    }),
+&nbsp;
+    // v1: CBC, ISO10126, 1 iteration
+    decryptDataWithPassword.bind(null, data, password, 1, {
+      mode: AES.CBC,
+      padding: Iso10126
+    })
+  ];
+&nbsp;
+  return decryptFns.reduce(function (acc, decrypt) {
+    if (acc) return acc;
+    try {
+      return JSON.parse(decrypt());
+    } catch (e) {
+      return null;
+    }
+  }, null);
+}
+&nbsp;
+function cipherFunction (password, sharedKey, pbkdf2Iterations, operation) {
+  // operation can be 'enc' or 'dec'
+  var id = function (msg) { return msg; };
+  if (!password || !sharedKey || !pbkdf2Iterations) {
+    return id;
+  } else {
+    switch (operation) {
+<span class="branch-0 cbranch-no" title="branch not covered" >      case 'enc':</span>
+<span class="cstat-no" title="statement not covered" >        return function (msg) <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >          return encryptSecretWithSecondPassword(msg, password, sharedKey, pbkdf2Iterations);</span>
+        };
+<span class="branch-1 cbranch-no" title="branch not covered" >      case 'dec':</span>
+<span class="cstat-no" title="statement not covered" >        return function (msg) <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >          return decryptSecretWithSecondPassword(msg, password, sharedKey, pbkdf2Iterations);</span>
+        };
+      default:
+        return id;
+    }
+  }
+}
+&nbsp;
+function encryptSecretWithSecondPassword (base58, password, sharedKey, pbkdf2Iterations) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  return encryptDataWithPassword(base58, sharedKey + password, pbkdf2Iterations);</span>
+}
+&nbsp;
+function decryptSecretWithSecondPassword (secret, password, sharedKey, pbkdf2Iterations) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  return decryptDataWithPassword(secret, sharedKey + password, pbkdf2Iterations);</span>
+}
+&nbsp;
+function decryptPasswordWithProcessedPin (data, password, pbkdf2Iterations) {
+  return decryptDataWithPassword(data, password, pbkdf2Iterations);
+}
+&nbsp;
+// data: e.g. JSON.stringify({...})
+// key: AES key (256 bit Buffer)
+// iv: optional initialization vector
+// returns: concatenated and Base64 encoded iv + payload
+function encryptDataWithKey (data, key, iv) {
+  iv = iv || crypto.randomBytes(SALT_BYTES);
+&nbsp;
+  var dataBytes = new Buffer(data, 'utf8');
+  var options = { mode: AES.CBC, padding: Iso10126 };
+&nbsp;
+  var encryptedBytes = AES.encrypt(dataBytes, key, iv, options);
+  var payload = Buffer.concat([ iv, encryptedBytes ]);
+&nbsp;
+  return payload.toString('base64');
+}
+&nbsp;
+function encryptDataWithPassword (data, password, iterations) {
+  assert(data, 'data missing');
+  assert(password, 'password missing');
+  assert(iterations, 'iterations missing');
+&nbsp;
+  var salt = crypto.randomBytes(SALT_BYTES);
+  // Expose stretchPassword for iOS to override
+  var key = module.exports.stretchPassword(password, salt, iterations, KEY_BIT_LEN);
+&nbsp;
+  return encryptDataWithKey(data, key, salt);
+}
+&nbsp;
+// payload: Base64 encoded concatenated payload + iv
+// key: AES key (256 bit Buffer)
+// returns: decrypted payload (e.g. a JSON string)
+function decryptDataWithKey (data, key) {
+  var dataHex = new Buffer(data, 'base64');
+&nbsp;
+  var iv = dataHex.slice(0, SALT_BYTES);
+  var payload = dataHex.slice(SALT_BYTES);
+&nbsp;
+  return this.decryptBufferWithKey(payload, iv, key);
+}
+&nbsp;
+// payload: (Buffer)
+// iv: initialization vector (Buffer)
+// key: AES key (256 bit Buffer)
+// options: (optional)
+// returns: decrypted payload (e.g. a JSON string)
+function decryptBufferWithKey (payload, iv, key, options) {
+  options = options || {};
+  options.padding = options.padding || Iso10126;
+&nbsp;
+  var decryptedBytes = AES.decrypt(payload, key, iv, options);
+  return decryptedBytes.toString('utf8');
+}
+&nbsp;
+function decryptDataWithPassword (data, password, iterations, options) {
+  assert(data, 'data missing');
+  assert(password, 'password missing');
+  assert(iterations, 'iterations missing');
+&nbsp;
+  var dataHex = new Buffer(data, 'base64');
+&nbsp;
+  var iv = dataHex.slice(0, SALT_BYTES);
+  var payload = dataHex.slice(SALT_BYTES);
+&nbsp;
+  //  AES initialization vector is also used as the salt in password stretching
+  var salt = iv;
+  // Expose stretchPassword for iOS to override
+  var key = module.exports.stretchPassword(password, salt, iterations, KEY_BIT_LEN);
+&nbsp;
+  var res = module.exports.decryptBufferWithKey(payload, iv, key, options);
+  return res;
+}
+&nbsp;
+function stretchPassword (password, salt, iterations, keyLenBits) {
+  assert(salt, 'salt missing');
+  assert(password &amp;&amp; typeof password === 'string', 'password string required');
+  assert(typeof iterations === 'number' &amp;&amp; iterations &gt; 0, 'positive iterations number required');
+  assert(keyLenBits == null || keyLenBits % 8 === 0, 'key length must be evenly divisible into bytes');
+&nbsp;
+  var saltBuffer = new Buffer(salt, 'hex');
+  var keyLenBytes = (keyLenBits || 256) / 8;
+  return pbkdf2(password, saltBuffer, iterations, keyLenBytes, ALGO.SHA1);
+}
+&nbsp;
+function pbkdf2 (password, salt, iterations, keyLenBytes, algorithm) {
+  algorithm = algorithm || ALGO.SHA1;
+  return pbkdf2Sync(password, salt, iterations, keyLenBytes, algorithm);
+}
+&nbsp;
+function hashNTimes (data, iterations) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  assert(iterations &gt; 0, '`iterations` must be a number greater than 0');</span>
+<span class="cstat-no" title="statement not covered" >  while (iterations--) <span class="cstat-no" title="statement not covered" >data = sha256(data);</span></span>
+<span class="cstat-no" title="statement not covered" >  return data.toString('hex');</span>
+}
+&nbsp;
+function sha256 (data) {
+  return crypto.createHash('sha256').update(data).digest();
+}
+&nbsp;
+module.exports = {
+  encryptWallet: encryptWallet,
+  decryptWallet: decryptWallet,
+  decryptWalletSync: decryptWalletSync,
+  cipherFunction: cipherFunction,
+  encryptDataWithKey: encryptDataWithKey,
+  decryptBufferWithKey: decryptBufferWithKey,
+  decryptDataWithKey: decryptDataWithKey,
+  decryptSecretWithSecondPassword: decryptSecretWithSecondPassword,
+  encryptSecretWithSecondPassword: encryptSecretWithSecondPassword,
+  decryptPasswordWithProcessedPin: decryptPasswordWithProcessedPin,
+  decrypt: decryptDataWithPassword,
+  encrypt: encryptDataWithPassword,
+  stretchPassword: stretchPassword,
+  pbkdf2: pbkdf2,
+  hashNTimes: hashNTimes,
+  sha256: sha256,
+  scrypt: scrypt,
+  AES: AES,
+  algo: ALGO,
+  pad: {
+    NoPadding: NoPadding,
+    ZeroPadding: ZeroPadding,
+    Iso10126: Iso10126,
+    Iso97971: Iso97971
+  },
+  // For test purposes:
+  Buffer: Buffer
+};
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Jul 05 2018 15:15:20 GMT+0300 (Turkey Standard Time)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

@@ -1,0 +1,701 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src\exchange-delegate.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">src/</a> exchange-delegate.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>91/91</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">82.93% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>34/41</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>25/25</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>90/90</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213</td><td class="line-coverage quiet"><span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">29×</span>
+<span class="cline-any cline-yes">29×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">31×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">41×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">var API = require('./api');
+var WalletStore = require('./wallet-store');
+var TX = require('./wallet-transaction');
+var Helpers = require('./helpers');
+var assert = require('assert');
+&nbsp;
+module.exports = ExchangeDelegate;
+&nbsp;
+function ExchangeDelegate (wallet) {
+  assert(wallet, 'BlockchainWallet expected');
+  this._wallet = wallet;
+}
+&nbsp;
+Object.defineProperties(ExchangeDelegate.prototype, {
+  'debug': {
+    configurable: false,
+    get: function () { return this._debug; },
+    set: function (value) {
+      this._debug = Boolean(value);
+    }
+  },
+  'trades': {
+    configurable: false,
+    get: function () { return this._trades; },
+    set: function (value) {
+      this._trades = value;
+    }
+  },
+  'labelBase': {
+    configurable: false,
+    get: function () {
+      return this._labelBase || 'Exchange order';
+    },
+    set: function (value) {
+      this._labelBase = value;
+    }
+  }
+});
+&nbsp;
+ExchangeDelegate.prototype.save = function () {
+  return this._wallet.external.save();
+};
+&nbsp;
+ExchangeDelegate.prototype.email = function () {
+  return this._wallet.accountInfo.email;
+};
+&nbsp;
+ExchangeDelegate.prototype.mobile = function () {
+  return this._wallet.accountInfo.mobile;
+};
+&nbsp;
+ExchangeDelegate.prototype.isEmailVerified = function () {
+  return this._wallet.accountInfo.isEmailVerified;
+};
+&nbsp;
+ExchangeDelegate.prototype.isMobileVerified = function () {
+  return this._wallet.accountInfo.isMobileVerified;
+};
+&nbsp;
+ExchangeDelegate.prototype.getToken = function (partner, options) {
+  options = options || <span class="branch-1 cbranch-no" title="branch not covered" >{};</span>
+  // assert(partner, 'Specify exchange partner');
+&nbsp;
+  let fields = {
+    // partner: partner, // Coinify doesn't support this yet
+    guid: this._wallet.guid,
+    sharedKey: this._wallet.sharedKey,
+    fields: `email${options.mobile ? '|mobile' : <span class="branch-1 cbranch-no" title="branch not covered" >''}</span>${options.walletAge ? <span class="branch-0 cbranch-no" title="branch not covered" >'|wallet_age' </span>: ''}`
+  };
+&nbsp;
+  <span class="missing-if-branch" title="else path not taken" >E</span>if (partner) {
+    fields.partner = partner;
+  }
+&nbsp;
+  return API.request(
+    'GET',
+    'wallet/signed-token',
+    fields
+  ).then(function (res) {
+    if (res.success) {
+      return res.token;
+    } else {
+      throw new Error('Unable to obtain email &amp; mobile verification proof');
+    }
+  });
+};
+&nbsp;
+ExchangeDelegate.prototype.monitorAddress = function (address, callback) {
+  var self = this;
+  WalletStore.addEventListener(function (event, data) {
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (event === 'on_tx_received') {
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (data['out']) {
+        for (var i = 0; i &lt; data['out'].length; i++) {
+          if (data['out'][i].addr === address) {
+            /* istanbul ignore if */
+            if (self.debug) {
+              console.info('Transaction ' + data['hash'] + ' detected on address ' + address);
+            }
+            callback(data['hash'], data['out'][i].value);
+          }
+        }
+      }
+    }
+  });
+};
+&nbsp;
+ExchangeDelegate.prototype.checkAddress = function (address) {
+  return API.getHistory([address]).then(function (res) {
+    if (res.txs &amp;&amp; res.txs.length &gt; 0) {
+      var tx = new TX(res.txs[0]);
+      return {hash: tx.hash, confirmations: tx.confirmations};
+    }
+  });
+};
+&nbsp;
+ExchangeDelegate.prototype.getReceiveAddress = function (trade) {
+  if (Helpers.isPositiveInteger(trade._account_index)) {
+    var account = this._wallet.hdwallet.accounts[trade._account_index];
+    return account.receiveAddressAtIndex(trade._receive_index);
+  } else {
+    // trade.account_index could be missing, although that shouldn't happen
+    return null;
+  }
+};
+&nbsp;
+ExchangeDelegate.prototype.findLastExchangeIndex = function () {
+  var account = this._wallet.hdwallet.defaultAccount;
+  var receiveAddressIndex = account.receiveIndex;
+&nbsp;
+  var receiveIndexes = this._trades.map(Helpers.pluck('_receive_index'));
+  var index = receiveAddressIndex;
+  for (var i = index - 1; i &gt; index - 20; i--) {
+    if (receiveIndexes.filter(Helpers.eq(i)).length &gt; 0) return i;
+  }
+  return null;
+};
+&nbsp;
+ExchangeDelegate.prototype.reserveReceiveAddress = function () {
+  assert(this._trades, 'delegate.trades array should be set for reserveReceiveAddress');
+&nbsp;
+  var self = this;
+&nbsp;
+  var account = this._wallet.hdwallet.defaultAccount;
+&nbsp;
+  let reservation = this._wallet.labels.reserveReceiveAddress(account.index, {
+    reusableIndex: this.findLastExchangeIndex()
+  });
+&nbsp;
+  return {
+    _reservation: reservation,
+    receiveAddress: reservation.receiveAddress,
+    commit: (trade) =&gt; {
+      /* istanbul ignore if */
+      if (self.debug) {
+        console.info('Set label for receive index', reservation.receiveIndex);
+      }
+      trade._account_index = account.index;
+      trade._receive_index = reservation.receiveIndex;
+      let id = trade.tradeSubscriptionId || trade.id;
+      let label = trade.tradeSubscriptionId ? <span class="branch-0 cbranch-no" title="branch not covered" >'Recurring Order' </span>: self.labelBase;
+      reservation.commit(`${label} #${id}`);
+    }
+  };
+};
+&nbsp;
+ExchangeDelegate.prototype.releaseReceiveAddress = function (trade) {
+  assert(this._trades, 'delegate.trades array should be set for releaseReceiveAddress');
+  if (Helpers.isPositiveInteger(trade._account_index) &amp;&amp; Helpers.isPositiveInteger(trade._receive_index)) {
+    var ids = this._trades
+      .filter(Helpers.propEq('receiveAddress', trade.receiveAddress))
+      .map(Helpers.pluck('id'))
+      .filter(Helpers.notEq(trade.id));
+&nbsp;
+    var self = this;
+&nbsp;
+    if (Helpers.isEmptyArray(ids)) {
+      /* istanbul ignore if */
+      if (self.debug) {
+        console.info('Remove label for receive index', trade._receive_index);
+      }
+      this._wallet.labels.releaseReceiveAddress(trade._account_index, trade._receive_index);
+    } else {
+      /* istanbul ignore if */
+      if (self.debug) {
+        console.info('Rename label for receive index', trade._receive_index);
+      }
+      this._wallet.labels.releaseReceiveAddress(
+        trade._account_index,
+        trade._receive_index,
+        {
+          expectedLabel: `${self.labelBase} #${trade.id}`
+        }
+      );
+    }
+  } else {
+    // trade.account_index could be missing, although that shouldn't happen
+    /* istanbul ignore if */
+    if (this.debug) {
+      console.info('account_index missing for trade #', trade.id);
+    }
+  }
+};
+&nbsp;
+ExchangeDelegate.prototype.serializeExtraFields = function (obj, trade) {
+  obj.account_index = trade._account_index;
+  obj.receive_index = trade._receive_index;
+};
+&nbsp;
+ExchangeDelegate.prototype.deserializeExtraFields = function (obj, trade) {
+  trade._account_index = obj.account_index;
+  trade._receive_index = obj.receive_index;
+};
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Jul 05 2018 15:15:20 GMT+0300 (Turkey Standard Time)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

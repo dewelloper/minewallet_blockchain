@@ -1,0 +1,614 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src\eth\eth-account.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">all files</a> / <a href="index.html">src/eth/</a> eth-account.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">64.63% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>53/82</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">50% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>12/24</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">50% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>22/44</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">68.42% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>52/76</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line medium'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184</td><td class="line-coverage quiet"><span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">116×</span>
+<span class="cline-any cline-yes">116×</span>
+<span class="cline-any cline-yes">116×</span>
+<span class="cline-any cline-yes">116×</span>
+<span class="cline-any cline-yes">116×</span>
+<span class="cline-any cline-yes">116×</span>
+<span class="cline-any cline-yes">116×</span>
+<span class="cline-any cline-yes">116×</span>
+<span class="cline-any cline-yes">116×</span>
+<span class="cline-any cline-yes">116×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">305×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">337×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">26×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">68×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">132×</span>
+<span class="cline-any cline-yes">132×</span>
+<span class="cline-any cline-yes">132×</span>
+<span class="cline-any cline-yes">132×</span>
+<span class="cline-any cline-yes">132×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">126×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">68×</span>
+<span class="cline-any cline-yes">68×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">108×</span>
+<span class="cline-any cline-yes">108×</span>
+<span class="cline-any cline-yes">108×</span>
+<span class="cline-any cline-yes">108×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const ethUtil = require('ethereumjs-util');
+const EthTxBuilder = require('./eth-tx-builder');
+const EthWalletTx = require('./eth-wallet-tx');
+const API = require('../api');
+const { toBigNumber, toWei, fromWei } = require('../helpers');
+const EthShiftPayment = require('../shift/eth-payment');
+&nbsp;
+class EthAccount {
+  constructor (obj) {
+    this._priv = obj.priv &amp;&amp; Buffer.from(obj.priv, 'hex');
+    this._addr = ethUtil.toChecksumAddress(obj.priv ? EthAccount.privateKeyToAddress(this._priv) : obj.addr);
+    this.label = obj.label;
+    this.archived = obj.archived || false;
+    this._correct = Boolean(obj.correct);
+    this._wei = null;
+    this._balance = null;
+    this._approximateBalance = null;
+    this._nonce = null;
+    this._txs = [];
+  }
+&nbsp;
+  get address () {
+    return this._addr;
+  }
+&nbsp;
+  get receiveAddress () <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >    return this.address;</span>
+  }
+&nbsp;
+  get privateKey () {
+    return this._priv;
+  }
+&nbsp;
+  get isCorrect () {
+    return this._correct;
+  }
+&nbsp;
+  get wei () {
+    return this._wei;
+  }
+&nbsp;
+  get balance () {
+    return this._balance;
+  }
+&nbsp;
+  get txs () {
+    return this._txs;
+  }
+&nbsp;
+  get nonce () {
+    return this._nonce;
+  }
+&nbsp;
+  get coinCode () <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >    return 'eth';</span>
+  }
+&nbsp;
+  markAsCorrect () {
+    this._correct = true;
+  }
+&nbsp;
+  getApproximateBalance () {
+    return this._approximateBalance;
+  }
+&nbsp;
+  createPayment () {
+    return new EthTxBuilder(this);
+  }
+&nbsp;
+  fetchHistory () <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >    return Promise.all([</span>
+      this.fetchBalance(),
+      this.fetchTransactions()
+    ]).then(([data, txs]) =&gt; (
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >      Object.assign(data, { txs })</span></span>
+    ));
+  }
+&nbsp;
+  fetchBalance () <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >    return fetch(`${API.API_ROOT_URL}eth/account/${this.address}/balance`)</span>
+      .then(r =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >r.status === 200 ? r.json() : r.json().then(e =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >Promise.reject(e))</span></span>)</span></span>
+      .then(data =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >this.setData(data[this.address]))</span></span>;
+  }
+&nbsp;
+  fetchTransactions () <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >    return fetch(`${API.API_ROOT_URL}eth/account/${this.address}`)</span>
+      .then(r =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >r.status === 200 ? r.json() : r.json().then(e =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >Promise.reject(e))</span></span>)</span></span>
+      .then(data =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >this.setTransactions(data[this.address]))</span></span>;
+  }
+&nbsp;
+  fetchTransaction (hash) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >    return fetch(`${API.API_ROOT_URL}eth/tx/${hash}`)</span>
+      .then(r =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >r.status === 200 ? r.json() : r.json().then(e =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >Promise.reject(e))</span></span>)</span></span>
+      .then(tx =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >this.appendTransaction(tx))</span></span>;
+  }
+&nbsp;
+  setData ({ balance, nonce } = {}) {
+    this._wei = toBigNumber(balance);
+    this._balance = fromWei(this.wei, 'ether').toString();
+    this._approximateBalance = fromWei(this.wei, 'ether').round(8).toString();
+    this._nonce = nonce;
+    return { balance, nonce };
+  }
+&nbsp;
+  appendTransaction (txJson) <span class="fstat-no" title="function not covered" >{</span>
+    let tx = <span class="cstat-no" title="statement not covered" >EthWalletTx.fromJSON(txJson);</span>
+    let txExists = <span class="cstat-no" title="statement not covered" >this._txs.find(({ hash }) =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >hash === tx.hash)</span></span> != null;</span>
+<span class="cstat-no" title="statement not covered" >    if (!txExists) <span class="cstat-no" title="statement not covered" >this._txs.unshift(tx);</span></span>
+<span class="cstat-no" title="statement not covered" >    return tx;</span>
+  }
+&nbsp;
+  setTransactions ({ txns = [] }) {
+    this._txs = txns.map(EthWalletTx.fromJSON).sort(EthWalletTx.txTimeSort);
+    return txns;
+  }
+&nbsp;
+  updateFromIncomingTx (tx) {
+    if (tx.type === 'confirmed') {
+      this.fetchBalance();
+    } else if (tx.type === 'pending') {
+      EthWalletTx.fromJSON(tx);
+    }
+  }
+&nbsp;
+  updateTxs (ethWallet) {
+    this.txs.forEach(tx =&gt; tx.update(ethWallet));
+  }
+&nbsp;
+  toJSON () {
+    return {
+      label: this.label,
+      archived: this.archived,
+      correct: this.isCorrect,
+      addr: this.address
+    };
+  }
+&nbsp;
+  isCorrectAddress (address) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >    return address.toLowerCase() === this.address.toLowerCase();</span>
+  }
+&nbsp;
+  isCorrectPrivateKey (privateKey) {
+    return EthAccount.privateKeyToAddress(privateKey) === this.address;
+  }
+&nbsp;
+  getAvailableBalance (gasLimit = EthTxBuilder.GAS_LIMIT, gasPrice = EthTxBuilder.GAS_PRICE) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >    return new Promise(resolve =&gt; <span class="fstat-no" title="function not covered" >{</span></span>
+      let fee = <span class="cstat-no" title="statement not covered" >toBigNumber(gasLimit).mul(toWei(gasPrice, 'gwei'));</span>
+      let available = <span class="cstat-no" title="statement not covered" >Math.max(parseFloat(this.wei.sub(fee)), 0);</span>
+      let amount = <span class="cstat-no" title="statement not covered" >parseFloat(fromWei(available, 'ether'));</span>
+<span class="cstat-no" title="statement not covered" >      resolve({ amount, fee: fromWei(fee, 'ether') });</span>
+    });
+  }
+&nbsp;
+  createShiftPayment (wallet) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >    return EthShiftPayment.fromWallet(wallet, this);</span>
+  }
+&nbsp;
+  static privateKeyToAddress (privateKey) {
+    return ethUtil.toChecksumAddress(ethUtil.privateToAddress(privateKey).toString('hex'));
+  }
+&nbsp;
+  static defaultLabel (accountIdx) {
+    let label = 'My Ether Wallet';
+    return accountIdx &gt; 0 ? `${label} ${accountIdx + 1}` : label;
+  }
+&nbsp;
+  static fromWallet (wallet) {
+    let addr = EthAccount.privateKeyToAddress(wallet.getPrivateKey());
+    let account = new EthAccount({ addr });
+    account.setData({ balance: '0', nonce: 0 });
+    return account;
+  }
+&nbsp;
+  static fromMew (seed) {
+    let addr = ethUtil.privateToAddress(seed).toString('hex');
+    let priv = seed;
+    let account = new EthAccount({ priv, addr });
+    return account;
+  }
+}
+&nbsp;
+module.exports = EthAccount;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Jul 05 2018 15:15:20 GMT+0300 (Turkey Standard Time)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>

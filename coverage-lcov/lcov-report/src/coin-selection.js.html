@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src\coin-selection.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">src/</a> coin-selection.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">98.18% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>54/55</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">84.62% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>11/13</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>16/16</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">97.83% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>45/46</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86</td><td class="line-coverage quiet"><span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-yes">19×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">26×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">14×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const { curry, unfold, reduce, last, filter, head, map, isNil, isEmpty, tail, clamp, sort } = require('ramda');
+const Coin = require('./coin.js');
+&nbsp;
+const fold = curry((empty, xs) =&gt; reduce((acc, x) =&gt; acc.concat(x), empty, xs));
+const foldCoins = fold(Coin.empty);
+&nbsp;
+const dustThreshold = (feeRate) =&gt; (Coin.inputBytes({}) + Coin.outputBytes({})) * feeRate;
+&nbsp;
+const transactionBytes = (inputs, outputs) =&gt;
+  Coin.TX_EMPTY_SIZE + inputs.reduce((a, c) =&gt; a + Coin.inputBytes(c), 0) + outputs.reduce((a, c) =&gt; a + Coin.outputBytes(c), 0);
+&nbsp;
+const effectiveBalance = curry((feePerByte, inputs, outputs = [{}]) =&gt;
+  foldCoins(inputs).map(v =&gt;
+    clamp(0, Infinity, v - transactionBytes(inputs, outputs) * feePerByte))
+);
+&nbsp;
+// findTarget :: [Coin] -&gt; Number -&gt; [Coin] -&gt; String -&gt; Selection
+const findTarget = (targets, feePerByte, coins, changeAddress) =&gt; {
+  let target = foldCoins(targets).value;
+  let _findTarget = seed =&gt; {
+    let acc = seed[0];
+    let newCoin = head(seed[2]);
+    if (isNil(newCoin) || acc &gt; target + seed[1]) { return false; }
+    let partialFee = seed[1] + Coin.inputBytes(newCoin) * feePerByte;
+    let restCoins = tail(seed[2]);
+    let nextAcc = acc + newCoin.value;
+    return acc &gt; target + partialFee ? <span class="branch-0 cbranch-no" title="branch not covered" >false </span>: [[nextAcc, partialFee, newCoin], [nextAcc, partialFee, restCoins]];
+  };
+  let partialFee = transactionBytes([], targets) * feePerByte;
+  let effectiveCoins = filter(c =&gt; Coin.effectiveValue(feePerByte, c) &gt; 0, coins);
+  let selection = unfold(_findTarget, [0, partialFee, effectiveCoins]);
+  if (isEmpty(selection)) {
+    // no coins to select
+    return { fee: 0, inputs: [], outputs: [] };
+  } else {
+    let maxBalance = last(selection)[0];
+    let fee = last(selection)[1];
+    let selectedCoins = map(e =&gt; e[2], selection);
+    if (maxBalance &lt; target + fee) {
+      // not enough money to satisfy target
+      return { fee: fee, inputs: [], outputs: targets };
+    } else {
+      let extra = maxBalance - target - fee;
+      <span class="missing-if-branch" title="else path not taken" >E</span>if (extra &gt;= dustThreshold(feePerByte)) {
+        // add change
+        let change = Coin.fromJS({ value: extra, address: changeAddress, change: true });
+        return { fee: fee, inputs: selectedCoins, outputs: [...targets, change] };
+      } else {
+        // burn change
+<span class="cstat-no" title="statement not covered" >        return { fee: fee + extra, inputs: selectedCoins, outputs: targets };</span>
+      }
+    }
+  }
+};
+&nbsp;
+// selectAll :: Number -&gt; [Coin] -&gt; String -&gt; Selection
+const selectAll = (feePerByte, coins, outAddress) =&gt; {
+  let effectiveCoins = filter(c =&gt; Coin.effectiveValue(feePerByte, c) &gt; 0, coins);
+  let effBalance = effectiveBalance(feePerByte, effectiveCoins).value;
+  let balance = foldCoins(effectiveCoins).value;
+  let fee = balance - effBalance;
+  return {
+    fee,
+    inputs: effectiveCoins,
+    outputs: [Coin.fromJS({ value: effBalance, address: outAddress })]
+  };
+};
+&nbsp;
+// descentDraw :: [Coin] -&gt; Number -&gt; [Coin] -&gt; String -&gt; Selection
+const descentDraw = (targets, feePerByte, coins, changeAddress) =&gt;
+  findTarget(targets, feePerByte, sort(Coin.descentSort, coins), changeAddress);
+&nbsp;
+// ascentDraw :: [Coin] -&gt; Number -&gt; [Coin] -&gt; String -&gt; Selection
+const ascentDraw = (targets, feePerByte, coins, changeAddress) =&gt;
+  findTarget(targets, feePerByte, sort(Coin.ascentSort, coins), changeAddress);
+&nbsp;
+module.exports = {
+  dustThreshold,
+  transactionBytes,
+  effectiveBalance,
+  findTarget,
+  selectAll,
+  descentDraw,
+  ascentDraw
+};
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Jul 05 2018 15:15:20 GMT+0300 (Turkey Standard Time)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

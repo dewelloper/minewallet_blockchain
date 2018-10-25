@@ -1,0 +1,800 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src\metadata.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">src/</a> metadata.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">76.6% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>108/141</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">47.5% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>19/40</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">78.38% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>29/37</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">76.98% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>97/126</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line medium'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+&nbsp;
+var WalletCrypto = require('./wallet-crypto');
+var Bitcoin = require('bitcoinjs-lib');
+var API = require('./api');
+var Helpers = require('./helpers');
+var constants = require('./constants');
+&nbsp;
+// individual imports to reduce bundle size
+var assoc = require('ramda/src/assoc');
+var curry = require('ramda/src/curry');
+var compose = require('ramda/src/compose');
+var prop = require('ramda/src/prop');
+&nbsp;
+class Metadata {
+  constructor (ecPair, encKeyBuffer, typeId) {
+    // ecPair :: ECPair object - bitcoinjs-lib
+    // encKeyBuffer :: Buffer (nullable = no encrypted save)
+    // TypeId :: Int (nullable = default -1)
+    this.VERSION = 1;
+    this._typeId = typeId == null ? -1 : typeId;
+    this._magicHash = null;
+    this._address = ecPair.getAddress();
+    this._signKey = ecPair;
+    this._encKeyBuffer = encKeyBuffer;
+    this._sequence = Promise.resolve();
+  }
+&nbsp;
+  get existsOnServer () <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >    return Boolean(this._magicHash);</span>
+  }
+}
+&nbsp;
+// network
+Metadata.request = function (method, endpoint, data) <span class="fstat-no" title="function not covered" >{</span>
+  const url = <span class="cstat-no" title="statement not covered" >API.API_ROOT_URL + 'metadata/' + endpoint;</span>
+  let options = <span class="cstat-no" title="statement not covered" >{</span>
+    headers: { 'Content-Type': 'application/json' },
+    credentials: 'omit'
+  };
+<span class="cstat-no" title="statement not covered" >  if (method !== 'GET') {</span>
+<span class="cstat-no" title="statement not covered" >    options.body = JSON.stringify(data);</span>
+  }
+<span class="cstat-no" title="statement not covered" >  options.method = method;</span>
+  const handleNetworkError = <span class="cstat-no" title="statement not covered" >(e) =&gt;</span>
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >    Promise.reject({ error: 'METADATA_CONNECT_ERROR', message: e });</span></span>
+&nbsp;
+  const checkStatus = <span class="cstat-no" title="statement not covered" >(response) =&gt; <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >    if (response.status &gt;= 200 &amp;&amp; response.status &lt; 300) {</span>
+<span class="cstat-no" title="statement not covered" >      return response.json();</span>
+    } else <span class="cstat-no" title="statement not covered" >if (method === 'GET' &amp;&amp; response.status === 404) {</span>
+<span class="cstat-no" title="statement not covered" >      return null;</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      return response.text().then(Promise.reject.bind(Promise));</span>
+    }
+  };
+<span class="cstat-no" title="statement not covered" >  return fetch(url, options)</span>
+    .catch(handleNetworkError)
+    .then(checkStatus);
+};
+&nbsp;
+Metadata.GET = function (e, d) { return Metadata.request('GET', e, d); };
+Metadata.PUT = function (e, d) <span class="fstat-no" title="function not covered" >{ <span class="cstat-no" title="statement not covered" >return Metadata.request('PUT', e, d); </span>};</span>
+Metadata.read = (address) =&gt; Metadata.request('GET', address)
+                                      .then(Metadata.extractResponse(null));
+&nbsp;
+// //////////////////////////////////////////////////////////////////////////////
+Metadata.encrypt = curry((key, data) =&gt; WalletCrypto.encryptDataWithKey(data, key));
+Metadata.decrypt = curry((key, data) =&gt; WalletCrypto.decryptDataWithKey(data, key));
+Metadata.B64ToBuffer = (base64) =&gt; Buffer.from(base64, 'base64');
+Metadata.BufferToB64 = (buff) =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >buff.toString('base64');</span></span>
+Metadata.StringToBuffer = (base64) =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >Buffer.from(base64);</span></span>
+Metadata.BufferToString = (buff) =&gt; buff.toString();
+&nbsp;
+// Metadata.message :: Buffer -&gt; Buffer -&gt; Base64String
+Metadata.message = curry(
+  function (payload, prevMagic) {
+    if (prevMagic) {
+      const hash = WalletCrypto.sha256(payload);
+      const buff = Buffer.concat([prevMagic, hash]);
+      return buff.toString('base64');
+    } else {
+      return payload.toString('base64');
+    }
+  }
+);
+&nbsp;
+// Metadata.magic :: Buffer -&gt; Buffer -&gt; Buffer
+Metadata.magic = curry(
+  function (payload, prevMagic) {
+    const msg = this.message(payload, prevMagic);
+    return Bitcoin.message.magicHash(msg, constants.getNetwork());
+  }
+);
+&nbsp;
+Metadata.verify = (address, signature, hash) =&gt;
+  Bitcoin.message.verify(address, signature, hash, constants.getNetwork());
+&nbsp;
+// Metadata.sign :: keyPair -&gt; msg -&gt; Buffer
+Metadata.sign = (keyPair, msg) =&gt; Bitcoin.message.sign(keyPair, msg, constants.getNetwork());
+&nbsp;
+// Metadata.computeSignature :: keypair -&gt; buffer -&gt; buffer -&gt; base64
+Metadata.computeSignature = (key, payloadBuff, magicHash) =&gt;
+  Metadata.sign(key, Metadata.message(payloadBuff, magicHash));
+&nbsp;
+Metadata.verifyResponse = curry((address, res) =&gt; {
+  if (res === null) return res;
+  const M = Metadata;
+  const sB = res.signature ? Buffer.from(res.signature, 'base64') : <span class="branch-1 cbranch-no" title="branch not covered" >undefined;</span>
+  const pB = res.payload ? Buffer.from(res.payload, 'base64') : <span class="branch-1 cbranch-no" title="branch not covered" >undefined;</span>
+  const mB = res.prev_magic_hash ? Buffer.from(res.prev_magic_hash, 'hex') : <span class="branch-1 cbranch-no" title="branch not covered" >undefined;</span>
+  const verified = Metadata.verify(address, sB, M.message(pB, mB));
+<span class="cstat-no" title="statement not covered" >  if (!verified) <span class="cstat-no" title="statement not covered" >throw new Error('METADATA_SIGNATURE_VERIFICATION_ERROR');</span></span>
+<span class="cstat-no" title="statement not covered" >  return assoc('compute_new_magic_hash', M.magic(pB, mB), res);</span>
+});
+&nbsp;
+Metadata.extractResponse = curry((encKey, res) =&gt; {
+  const M = Metadata;
+  if (res === null) {
+    return res;
+  } else {
+    let parseOrLog = (str) =&gt; {
+      try {
+        return JSON.parse(str);
+      } catch (e) {
+<span class="cstat-no" title="statement not covered" >        console.log('Unable to parse metadata contents: ' + str);</span>
+<span class="cstat-no" title="statement not covered" >        throw e;</span>
+      }
+    };
+    return encKey
+      ? compose(parseOrLog, M.decrypt(encKey), prop('payload'))(res)
+      : compose(parseOrLog, M.BufferToString, M.B64ToBuffer, prop('payload'))(res);
+  }
+});
+&nbsp;
+Metadata.toImmutable = compose(Object.freeze, JSON.parse, JSON.stringify);
+&nbsp;
+Metadata.prototype.create = function (payload) {
+  const M = Metadata;
+  payload = M.toImmutable(payload);
+  return this.next(() =&gt; {
+    const encPayloadBuffer = this._encKeyBuffer
+      ? compose(M.B64ToBuffer, M.encrypt(this._encKeyBuffer), JSON.stringify)(payload)
+      : <span class="branch-1 cbranch-no" title="branch not covered" >compose(M.StringToBuffer, JSON.stringify)(payload);</span>
+    const signatureBuffer = M.computeSignature(this._signKey, encPayloadBuffer, this._magicHash);
+    const body = <span class="cstat-no" title="statement not covered" >{</span>
+      'version': this.VERSION,
+      'payload': encPayloadBuffer.toString('base64'),
+      'signature': signatureBuffer.toString('base64'),
+      'prev_magic_hash': this._magicHash ? this._magicHash.toString('hex') : null,
+      'type_id': this._typeId
+    };
+<span class="cstat-no" title="statement not covered" >    return M.PUT(this._address, body).then(</span>
+      (response) =&gt; <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >        this._value = payload;</span>
+<span class="cstat-no" title="statement not covered" >        this._magicHash = M.magic(encPayloadBuffer, this._magicHash);</span>
+<span class="cstat-no" title="statement not covered" >        return payload;</span>
+      }
+    );
+  });
+};
+&nbsp;
+Metadata.prototype.update = function (payload) {
+  if (JSON.stringify(payload) === JSON.stringify(this._value)) {
+    return this.next(() =&gt; Promise.resolve(Metadata.toImmutable(payload)));
+  } else {
+    return this.create(payload);
+  }
+};
+&nbsp;
+Metadata.prototype.fromObject = function (payload, magicHashHex) {
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (magicHashHex) {
+<span class="cstat-no" title="statement not covered" >    this._magicHash = Buffer.from(magicHashHex, 'hex');</span>
+  }
+&nbsp;
+  const saveValue = (res) =&gt; {
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (res === null) return res;
+<span class="cstat-no" title="statement not covered" >    this._value = Metadata.toImmutable(res);</span>
+<span class="cstat-no" title="statement not covered" >    return res;</span>
+  };
+&nbsp;
+  return Promise.resolve(payload).then(saveValue);
+};
+&nbsp;
+Metadata.prototype.fetch = function () {
+  const saveMagicHash = (res) =&gt; {
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (res === null) return res;
+<span class="cstat-no" title="statement not covered" >    this._magicHash = prop('compute_new_magic_hash', res);</span>
+<span class="cstat-no" title="statement not covered" >    return res;</span>
+  };
+&nbsp;
+  return this.next(() =&gt; {
+    const M = Metadata;
+&nbsp;
+    return M.GET(this._address).then(M.verifyResponse(this._address))
+                               .then(saveMagicHash)
+                               .then(M.extractResponse(this._encKeyBuffer))
+                               .then(this.fromObject.bind(this))
+                               .catch((e) =&gt; {
+                                 console.error(`Failed to fetch metadata entry ${this._typeId} at ${this._address}:`, e);
+                                 return Promise.reject('METADATA_FETCH_FAILED');
+                               });
+  });
+};
+&nbsp;
+Metadata.prototype.next = function (f) {
+  var nextInSeq = this._sequence.then(f);
+  this._sequence = nextInSeq.then(Helpers.noop, Helpers.noop);
+  return nextInSeq;
+};
+&nbsp;
+// CONSTRUCTORS
+// used to restore metadata from purpose xpriv (second password)
+Metadata.fromMetadataHDNode = function (metadataHDNode, typeId) {
+  // Payload types:
+  // 0: reserved (guid)
+  // 1: reserved
+  // 2: whats-new
+  // 3: buy-sell
+  // 4: contacts
+  const payloadTypeNode = metadataHDNode.deriveHardened(typeId);
+  // purpose' / type' / 0' : https://meta.blockchain.info/{address}
+  //                       signature used to authenticate
+  // purpose' / type' / 1' : sha256(private key) used as 256 bit AES key
+  const node = payloadTypeNode.deriveHardened(0);
+  const privateKeyBuffer = payloadTypeNode.deriveHardened(1).keyPair.d.toBuffer();
+  const encryptionKey = WalletCrypto.sha256(privateKeyBuffer);
+  return new Metadata(node.keyPair, encryptionKey, typeId);
+};
+&nbsp;
+Metadata.deriveMetadataNode = function (masterHDNode) {
+  // BIP 43 purpose needs to be 31 bit or less. For lack of a BIP number
+  // we take the first 31 bits of the SHA256 hash of a reverse domain.
+  var hash = WalletCrypto.sha256('info.blockchain.metadata');
+  var purpose = hash.slice(0, 4).readUInt32BE(0) &amp; 0x7FFFFFFF; // 510742
+  return masterHDNode.deriveHardened(purpose);
+};
+&nbsp;
+// used to create a new metadata entry from wallet master hd node
+Metadata.fromMasterHDNode = function (masterHDNode, typeId) {
+  var metadataHDNode = Metadata.deriveMetadataNode(masterHDNode);
+  return Metadata.fromMetadataHDNode(metadataHDNode, typeId);
+};
+&nbsp;
+module.exports = Metadata;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Jul 05 2018 15:15:20 GMT+0300 (Turkey Standard Time)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

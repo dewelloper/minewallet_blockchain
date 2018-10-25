@@ -1,0 +1,650 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src\transaction.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">src/</a> transaction.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">58.7% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>81/138</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">73.68% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>28/38</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">57.14% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>12/21</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">56.1% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>69/123</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line medium'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">194×</span>
+<span class="cline-any cline-yes">194×</span>
+<span class="cline-any cline-yes">194×</span>
+<span class="cline-any cline-yes">194×</span>
+<span class="cline-any cline-yes">194×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">194×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-yes">13×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">194×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">194×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">194×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">194×</span>
+<span class="cline-any cline-yes">136×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">194×</span>
+<span class="cline-any cline-yes">177×</span>
+<span class="cline-any cline-yes">27×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">194×</span>
+<span class="cline-any cline-yes">144×</span>
+<span class="cline-any cline-yes">144×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">194×</span>
+<span class="cline-any cline-yes">136×</span>
+<span class="cline-any cline-yes">135×</span>
+<span class="cline-any cline-yes">186×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">194×</span>
+<span class="cline-any cline-yes">134×</span>
+<span class="cline-any cline-yes">134×</span>
+<span class="cline-any cline-yes">134×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">194×</span>
+<span class="cline-any cline-yes">65×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">194×</span>
+<span class="cline-any cline-yes">37×</span>
+<span class="cline-any cline-yes">34×</span>
+<span class="cline-any cline-yes">34×</span>
+<span class="cline-any cline-yes">34×</span>
+<span class="cline-any cline-yes">34×</span>
+<span class="cline-any cline-yes">34×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">34×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">31×</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">194×</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">'use strict';
+&nbsp;
+var assert = require('assert');
+var Bitcoin = require('bitcoinjs-lib');
+var Helpers = require('./helpers');
+var Buffer = require('buffer').Buffer;
+var constants = require('./constants');
+&nbsp;
+// Error messages that can be seen by the user should take the form of:
+// {error: "NOT_GOOD", some_param: 1}
+// Error messages that should only appear during development can be any string.
+&nbsp;
+var Transaction = function (payment, emitter) {
+  var unspentOutputs = payment.selectedCoins;
+  var toAddresses = payment.to;
+  var amounts = payment.amounts;
+  var fee = payment.finalFee;
+  var changeAddress = payment.change;
+  var BITCOIN_DUST = constants.getNetwork().dustThreshold;
+&nbsp;
+  if (!Array.isArray(toAddresses) &amp;&amp; toAddresses != null) { toAddresses = [toAddresses]; }
+  if (!Array.isArray(amounts) &amp;&amp; amounts != null) { amounts = [amounts]; }
+&nbsp;
+  assert(toAddresses &amp;&amp; toAddresses.length, 'Missing destination address');
+  assert(amounts &amp;&amp; amounts.length, 'Missing amount to pay');
+&nbsp;
+  if (payment.blockchainFee &amp;&amp; payment.blockchainAddress) {
+    amounts = amounts.concat(payment.blockchainFee);
+    toAddresses = toAddresses.concat(payment.blockchainAddress);
+  }
+&nbsp;
+  this.emitter = emitter;
+  this.amount = amounts.reduce(Helpers.add, 0);
+  this.addressesOfInputs = [];
+  this.privateKeys = null;
+  this.addressesOfNeededPrivateKeys = [];
+  this.pathsOfNeededPrivateKeys = [];
+&nbsp;
+  assert(toAddresses.length === amounts.length, 'The number of destination addresses and destination amounts should be the same.');
+  assert(this.amount &gt;= BITCOIN_DUST, {error: 'BELOW_DUST_THRESHOLD', amount: this.amount, threshold: BITCOIN_DUST});
+<span class="cstat-no" title="statement not covered" >  assert(unspentOutputs &amp;&amp; unspentOutputs.length &gt; 0, {error: 'NO_UNSPENT_OUTPUTS'});</span>
+  var transaction = <span class="cstat-no" title="statement not covered" >new Bitcoin.TransactionBuilder(constants.getNetwork());</span>
+  // add all outputs
+  function addOutput (e, i) <span class="fstat-no" title="function not covered" >{ <span class="cstat-no" title="statement not covered" >transaction.addOutput(toAddresses[i], amounts[i]); </span>}</span>
+<span class="cstat-no" title="statement not covered" >  toAddresses.map(addOutput);</span>
+&nbsp;
+  // add all inputs
+  var total = <span class="cstat-no" title="statement not covered" >0;</span>
+<span class="cstat-no" title="statement not covered" >  for (var i = 0; i &lt; unspentOutputs.length; i++) {</span>
+    var output = <span class="cstat-no" title="statement not covered" >unspentOutputs[i];</span>
+<span class="cstat-no" title="statement not covered" >    total = total + output.value;</span>
+    var transactionHashBuffer = <span class="cstat-no" title="statement not covered" >Buffer(output.hash, 'hex');</span>
+<span class="cstat-no" title="statement not covered" >    transaction.addInput(Array.prototype.reverse.call(transactionHashBuffer), output.index);</span>
+&nbsp;
+    // Generate address from output script and add to private list so we can check if the private keys match the inputs later
+    var scriptBuffer = <span class="cstat-no" title="statement not covered" >Buffer(output.script, 'hex');</span>
+<span class="cstat-no" title="statement not covered" >    assert.notEqual(Bitcoin.script.classifyOutput(scriptBuffer), 'nonstandard', {error: 'STRANGE_SCRIPT'});</span>
+    var address = <span class="cstat-no" title="statement not covered" >Bitcoin.address.fromOutputScript(scriptBuffer, constants.getNetwork()).toString();</span>
+<span class="cstat-no" title="statement not covered" >    assert(address, {error: 'CANNOT_DECODE_OUTPUT_ADDRESS', tx_hash: output.tx_hash});</span>
+<span class="cstat-no" title="statement not covered" >    this.addressesOfInputs.push(address);</span>
+&nbsp;
+    // Add to list of needed private keys
+<span class="cstat-no" title="statement not covered" >    if (output.xpub) {</span>
+<span class="cstat-no" title="statement not covered" >      this.pathsOfNeededPrivateKeys.push(output.xpub.path);</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >      this.addressesOfNeededPrivateKeys.push(address);</span>
+    }
+  }
+  // Consume the change if it would create a very small none standard output
+  var changeAmount = <span class="cstat-no" title="statement not covered" >total - this.amount - fee;</span>
+<span class="cstat-no" title="statement not covered" >  if (changeAmount &gt;= BITCOIN_DUST) {</span>
+<span class="cstat-no" title="statement not covered" >    assert(changeAddress, 'No change address specified');</span>
+<span class="cstat-no" title="statement not covered" >    transaction.addOutput(changeAddress, changeAmount);</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  this.transaction = transaction;</span>
+};
+&nbsp;
+Transaction.prototype.addPrivateKeys = function (privateKeys) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  assert.equal(privateKeys.length, this.addressesOfInputs.length, 'Number of private keys needs to match inputs');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  for (var i = 0; i &lt; privateKeys.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >    assert.equal(this.addressesOfInputs[i], privateKeys[i].getAddress(), 'Private key does not match bitcoin address ' + this.addressesOfInputs[i] + '!=' + privateKeys[i].getAddress() + ' while adding private key for input ' + i);</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  this.privateKeys = privateKeys;</span>
+};
+&nbsp;
+/**
+ * BIP69: Sort outputs lexicographycally
+ */
+&nbsp;
+Transaction.prototype.sortBIP69 = function () <span class="fstat-no" title="function not covered" >{</span>
+  var compareInputs = <span class="cstat-no" title="statement not covered" >function (a, b) <span class="fstat-no" title="function not covered" >{</span></span>
+    var hasha = <span class="cstat-no" title="statement not covered" >new Buffer(a[0].hash);</span>
+    var hashb = <span class="cstat-no" title="statement not covered" >new Buffer(b[0].hash);</span>
+    var x = <span class="cstat-no" title="statement not covered" >[].reverse.call(hasha);</span>
+    var y = <span class="cstat-no" title="statement not covered" >[].reverse.call(hashb);</span>
+<span class="cstat-no" title="statement not covered" >    return x.compare(y) || a[0].index - b[0].index;</span>
+  };
+&nbsp;
+  var compareOutputs = <span class="cstat-no" title="statement not covered" >function (a, b) <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >    return (a.value - b.value) || (a.script).compare(b.script);</span>
+  };
+  var mix = <span class="cstat-no" title="statement not covered" >Helpers.zip3(this.transaction.tx.ins, this.privateKeys, this.addressesOfInputs);</span>
+<span class="cstat-no" title="statement not covered" >  mix.sort(compareInputs);</span>
+<span class="cstat-no" title="statement not covered" >  this.transaction.tx.ins = mix.map(function (a) <span class="fstat-no" title="function not covered" >{ <span class="cstat-no" title="statement not covered" >return a[0]; </span>})</span>;</span>
+<span class="cstat-no" title="statement not covered" >  this.privateKeys = mix.map(function (a) <span class="fstat-no" title="function not covered" >{ <span class="cstat-no" title="statement not covered" >return a[1]; </span>})</span>;</span>
+<span class="cstat-no" title="statement not covered" >  this.addressesOfInputs = mix.map(function (a) <span class="fstat-no" title="function not covered" >{ <span class="cstat-no" title="statement not covered" >return a[2]; </span>})</span>;</span>
+<span class="cstat-no" title="statement not covered" >  this.transaction.tx.outs.sort(compareOutputs);</span>
+};
+/**
+ * Sign the transaction
+ * @return {Object} Signed transaction
+ */
+Transaction.prototype.sign = function () <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >  assert(this.privateKeys, 'Need private keys to sign transaction');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  assert.equal(this.privateKeys.length, this.transaction.inputs.length, 'Number of private keys needs to match inputs');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  for (var i = 0; i &lt; this.privateKeys.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >    assert.equal(this.addressesOfInputs[i], this.privateKeys[i].getAddress(), 'Private key does not match bitcoin address ' + this.addressesOfInputs[i] + '!=' + this.privateKeys[i].getAddress() + ' while signing input ' + i);</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  this.emitter.emit('on_begin_signing');</span>
+&nbsp;
+  var transaction = <span class="cstat-no" title="statement not covered" >this.transaction;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  for (var ii = 0; ii &lt; transaction.inputs.length; ii++) {</span>
+<span class="cstat-no" title="statement not covered" >    this.emitter.emit('on_sign_progress', ii + 1);</span>
+    var key = <span class="cstat-no" title="statement not covered" >this.privateKeys[ii];</span>
+<span class="cstat-no" title="statement not covered" >    transaction.sign(ii, key);</span>
+<span class="cstat-no" title="statement not covered" >    assert(transaction.inputs[ii].scriptType === 'pubkeyhash', 'Error creating input script');</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  this.emitter.emit('on_finish_signing');</span>
+<span class="cstat-no" title="statement not covered" >  return transaction;</span>
+};
+&nbsp;
+Transaction.inputCost = function (feePerKb) {
+  return Math.ceil(feePerKb * 0.148);
+};
+Transaction.guessSize = function (nInputs, nOutputs) {
+  if (nInputs &lt; 1 || nOutputs &lt; 1) { return 0; }
+  return (nInputs * 148 + nOutputs * 34 + 10);
+};
+&nbsp;
+Transaction.guessFee = function (nInputs, nOutputs, feePerKb) {
+  var sizeBytes = Transaction.guessSize(nInputs, nOutputs);
+  return Math.ceil(feePerKb * (sizeBytes / 1000));
+};
+&nbsp;
+Transaction.filterUsableCoins = function (coins, feePerKb) {
+  if (!Array.isArray(coins)) return [];
+  var icost = Transaction.inputCost(feePerKb);
+  return coins.filter(function (c) { return c.value &gt;= icost; });
+};
+&nbsp;
+Transaction.maxAvailableAmount = function (usableCoins, feePerKb) {
+  var len = usableCoins.length;
+  var fee = Transaction.guessFee(len, 2, feePerKb);
+  return {'amount': usableCoins.reduce(function (a, e) { a = a + e.value; return a; }, 0) - fee, 'fee': fee};
+};
+&nbsp;
+Transaction.sumOfCoins = function (coins) {
+  return coins.reduce(function (a, e) { a = a + e.value; return a; }, 0);
+};
+&nbsp;
+Transaction.selectCoins = function (usableCoins, amounts, fee, isAbsoluteFee) {
+  var amount = amounts.reduce(Helpers.add, 0);
+  var sorted = usableCoins.sort(function (a, b) { return b.value - a.value; });
+  var len = sorted.length;
+  var sel = [];
+  var accAm = 0;
+  var accFee = 0;
+&nbsp;
+  if (isAbsoluteFee) {
+    for (var i = 0; i &lt; len; i++) {
+      var coin = sorted[i];
+      accAm = accAm + coin.value;
+      sel.push(coin);
+      if (accAm &gt;= fee + amount) { return {'coins': sel, 'fee': fee}; }
+    }
+  } else {
+    for (var ii = 0; ii &lt; len; ii++) {
+      var coin2 = sorted[ii];
+      accAm = accAm + coin2.value;
+      accFee = Transaction.guessFee(ii + 1, 2, fee);
+      sel.push(coin2);
+      if (accAm &gt;= accFee + amount) { return {'coins': sel, 'fee': accFee}; }
+    }
+  }
+  return {'coins': [], 'fee': 0};
+};
+module.exports = Transaction;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Jul 05 2018 15:15:20 GMT+0300 (Turkey Standard Time)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+
+        {
+            "type": "node",
+            "name": "Launch",
+            "request": "launch",
+            "file": "${workspaceRoot}/tests/wallet.spec.js",
+            "webRoot": "${workspaceRoot}",
+            "runtimeExecutable": "${workspaceRoot}/phantomjs.exe",
+            "scriptArgs": [],
+            "sourceMaps": true
+        }
+    ]
+}

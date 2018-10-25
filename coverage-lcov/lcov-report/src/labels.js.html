@@ -1,0 +1,986 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src\labels.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">src/</a> labels.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">66.91% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>91/136</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">57.14% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>40/70</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">55.56% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>15/27</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">69.84% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>88/126</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line medium'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308</td><td class="line-coverage quiet"><span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24×</span>
+<span class="cline-any cline-yes">23×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">23×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">23×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">23×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">23×</span>
+<span class="cline-any cline-yes">23×</span>
+<span class="cline-any cline-yes">23×</span>
+<span class="cline-any cline-yes">23×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">23×</span>
+<span class="cline-any cline-yes">23×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">23×</span>
+<span class="cline-any cline-yes">69×</span>
+<span class="cline-any cline-yes">46×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">23×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">193×</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">var Helpers = require('./helpers');
+var AddressHD = require('./address-hd');
+var BlockchainAPI = require('./api');
+&nbsp;
+var assert = require('assert');
+&nbsp;
+class Labels {
+  constructor (wallet, syncWallet) {
+    assert(syncWallet instanceof Function, 'syncWallet function required');
+    this._wallet = wallet;
+&nbsp;
+    this._syncWallet = () =&gt; new Promise(syncWallet);
+&nbsp;
+    this.init();
+  }
+&nbsp;
+  init () {
+    this._accounts = [];
+&nbsp;
+    for (let hdAccount of this._wallet.hdwallet.accounts) {
+      let accountIndex = hdAccount.index;
+      let receiveIndex = hdAccount.receiveIndex;
+      let addresses = [];
+&nbsp;
+      for (let addressLabel of hdAccount.getLabels()) {
+        addresses[addressLabel.index] = new AddressHD(
+          {
+            label: addressLabel.label
+          },
+          hdAccount,
+          addressLabel.index
+        );
+      }
+&nbsp;
+      // Add null entries up to the current (labeled) receive index
+      for (let i = 0; i &lt; Math.max(receiveIndex + 1, addresses.length); i++) {
+        if (!addresses[i]) {
+          addresses[i] = new AddressHD(null,
+                        hdAccount,
+                        i);
+        }
+      }
+      this._accounts[accountIndex] = addresses;
+    }
+  }
+&nbsp;
+  get readOnly () {
+    return false;
+  }
+&nbsp;
+  // For debugging only, not used to save.
+  toJSON () {
+    return {
+      version: this.version,
+      accounts: this._accounts.map((addresses) =&gt; {
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (addresses.length &gt; 1) {
+          addresses = Helpers.deepClone(addresses);
+          // Remove trailing null values:
+          while (!addresses[addresses.length - 1] || addresses[addresses.length - 1].label === null) {
+            addresses.pop();
+          }
+        }
+        return addresses;
+      })
+    };
+  }
+&nbsp;
+  // Goes through all labeled addresses and checks which ones have transactions.
+  // This result will be cached in the future. Although we obtain the balance,
+  // this is an implementation detail and we don't save it.
+  checkIfUsed (accountIndex) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >    assert(Helpers.isPositiveInteger(accountIndex), 'specify accountIndex');</span>
+    let labeledAddresses = <span class="cstat-no" title="statement not covered" >this.all(accountIndex).filter((a) =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >a !== null &amp;&amp; a.label !== null)</span></span>;</span>
+    let addresses = <span class="cstat-no" title="statement not covered" >labeledAddresses.map((a) =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >a.address)</span></span>;</span>
+<span class="cstat-no" title="statement not covered" >    if (addresses.length === 0) <span class="cstat-no" title="statement not covered" >return Promise.resolve();</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return BlockchainAPI.getBalances(addresses).then((data) =&gt; <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >      for (let labeledAddress of labeledAddresses) {</span>
+<span class="cstat-no" title="statement not covered" >        if (data[labeledAddress.address]) {</span>
+<span class="cstat-no" title="statement not covered" >          labeledAddress.used = data[labeledAddress.address].n_tx &gt; 0;</span>
+        }
+      }
+    });
+  }
+&nbsp;
+  fetchBalance (hdAddresses) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >    assert(Array.isArray(hdAddresses), 'hdAddresses missing');</span>
+<span class="cstat-no" title="statement not covered" >    for (let addressHD of hdAddresses) {</span>
+<span class="cstat-no" title="statement not covered" >      assert(addressHD.constructor.name === 'AddressHD', 'AddressHD required');</span>
+    }
+    let addresses = <span class="cstat-no" title="statement not covered" >hdAddresses.filter((a) =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >a.balance === null)</span></span></span>
+               .map((a) =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >a.address)</span></span>;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    if (addresses.length === 0) <span class="cstat-no" title="statement not covered" >return Promise.resolve();</span></span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    return BlockchainAPI.getBalances(addresses).then((data) =&gt; <span class="fstat-no" title="function not covered" >{</span></span>
+<span class="cstat-no" title="statement not covered" >      for (let a of hdAddresses) {</span>
+<span class="cstat-no" title="statement not covered" >        if (data[a.address]) {</span>
+<span class="cstat-no" title="statement not covered" >          a.used = data[a.address].n_tx &gt; 0;</span>
+<span class="cstat-no" title="statement not covered" >          a.balance = data[a.address].final_balance;</span>
+        }
+      }
+    });
+  }
+&nbsp;
+  all (accountIndex, options = {}) <span class="fstat-no" title="function not covered" >{</span>
+<span class="cstat-no" title="statement not covered" >    return this._getAccount(accountIndex);</span>
+  }
+&nbsp;
+  // Side-effect: adds empty array to this._accounts if needed
+  _getAccount (accountIndex) {
+    assert(Helpers.isPositiveInteger(accountIndex), 'specify accountIndex');
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (!this._accounts[accountIndex]) {
+<span class="cstat-no" title="statement not covered" >      assert(this._wallet.hdwallet.accounts[accountIndex], 'Wallet does not contain account', accountIndex);</span>
+<span class="cstat-no" title="statement not covered" >      this._accounts[accountIndex] = [];</span>
+    }
+    return this._accounts[accountIndex];
+  }
+&nbsp;
+  // returns Int or null
+  maxLabeledReceiveIndex (accountIndex) <span class="fstat-no" title="function not covered" >{</span>
+    let labeledAddresses = <span class="cstat-no" title="statement not covered" >this._getAccount(accountIndex).filter(a =&gt; <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >a &amp;&amp; a.label !== null)</span></span>;</span>
+<span class="cstat-no" title="statement not covered" >    if (labeledAddresses.length === 0) <span class="cstat-no" title="statement not covered" >return null;</span></span>
+    let indexOf = <span class="cstat-no" title="statement not covered" >labeledAddresses[labeledAddresses.length - 1].index;</span>
+<span class="cstat-no" title="statement not covered" >    return indexOf &gt; -1 ? indexOf : null;</span>
+  }
+&nbsp;
+  // Side-effect: adds a new entry if there is a new account or receive index.
+  getAddress (accountIndex, receiveIndex) {
+    var entry = this._getAccount(accountIndex)[receiveIndex];
+&nbsp;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (!entry) {
+<span class="cstat-no" title="statement not covered" >      entry = new AddressHD(null,</span>
+                           this._wallet.hdwallet.accounts[accountIndex],
+                           receiveIndex);
+<span class="cstat-no" title="statement not covered" >      entry.used = null;</span>
+<span class="cstat-no" title="statement not covered" >      this._getAccount(accountIndex)[receiveIndex] = entry;</span>
+    }
+&nbsp;
+    return entry;
+  }
+&nbsp;
+  getLabel (accountIndex, addressIndex) <span class="fstat-no" title="function not covered" >{</span>
+    let entry = <span class="cstat-no" title="statement not covered" >this.getAddress(accountIndex, addressIndex);</span>
+<span class="cstat-no" title="statement not covered" >    return entry.label;</span>
+  }
+&nbsp;
+  addLabel (accountIndex, maxGap, label) {
+    assert(Helpers.isPositiveInteger(accountIndex), 'specify accountIndex');
+    assert(Helpers.isString(label), 'specify label');
+    assert(Helpers.isPositiveInteger(maxGap) &amp;&amp; maxGap &lt;= 20, 'Max gap must be less than 20');
+&nbsp;
+    let receiveIndex = this._wallet.hdwallet.accounts[accountIndex].receiveIndex;
+    let lastUsedReceiveIndex = this._wallet.hdwallet.accounts[accountIndex].lastUsedReceiveIndex;
+&nbsp;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (!Helpers.isValidLabel(label)) {
+<span class="cstat-no" title="statement not covered" >      return Promise.reject('NOT_ALPHANUMERIC');</span>
+    } else <span class="missing-if-branch" title="if path not taken" >I</span>if (receiveIndex - lastUsedReceiveIndex &gt;= maxGap) {
+      // Exceeds BIP 44 unused address gap limit
+<span class="cstat-no" title="statement not covered" >      return Promise.reject('GAP');</span>
+    }
+&nbsp;
+    let addr = this.getAddress(accountIndex, receiveIndex);
+&nbsp;
+    addr.label = label;
+    addr.used = false;
+&nbsp;
+    // Update wallet:
+    this._wallet.hdwallet.accounts[accountIndex].addLabel(receiveIndex, label);
+&nbsp;
+    return this._syncWallet().then(() =&gt; {
+      return addr;
+    });
+  }
+&nbsp;
+  // address: either an AddressHD object or a receive index Integer
+  setLabel (accountIndex, address, label) {
+    assert(
+      Helpers.isPositiveInteger(address) ||
+      (<span class="branch-1 cbranch-no" title="branch not covered" >address.constructor </span>&amp;&amp; <span class="branch-2 cbranch-no" title="branch not covered" >address.constructor.name === 'AddressHD')</span>,
+    'address should be AddressHD instance or Int');
+&nbsp;
+    let receiveIndex;
+&nbsp;
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (Helpers.isPositiveInteger(address)) {
+      receiveIndex = address;
+      address = this.getAddress(accountIndex, receiveIndex);
+    } else {
+<span class="cstat-no" title="statement not covered" >      receiveIndex = this._getAccount(accountIndex).indexOf(address);</span>
+<span class="cstat-no" title="statement not covered" >      assert(Helpers.isPositiveInteger(receiveIndex), 'Address not found');</span>
+    }
+&nbsp;
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (!Helpers.isValidLabel(label)) {
+<span class="cstat-no" title="statement not covered" >      return Promise.reject('NOT_ALPHANUMERIC');</span>
+    }
+&nbsp;
+    if (address.label === label) {
+      return Promise.resolve();
+    }
+&nbsp;
+    address.label = label;
+&nbsp;
+    // Update in wallet:
+    this._wallet.hdwallet.accounts[accountIndex].setLabel(receiveIndex, label);
+&nbsp;
+    return this._syncWallet();
+  }
+&nbsp;
+  removeLabel (accountIndex, address) {
+    assert(Helpers.isPositiveInteger(accountIndex), 'Account index required');
+&nbsp;
+    assert(
+      Helpers.isPositiveInteger(address) ||
+      (<span class="branch-1 cbranch-no" title="branch not covered" >address.constructor </span>&amp;&amp; <span class="branch-2 cbranch-no" title="branch not covered" >address.constructor.name === 'AddressHD')</span>,
+    'address should be AddressHD instance or Int');
+&nbsp;
+    let addressIndex;
+    <span class="missing-if-branch" title="else path not taken" >E</span>if (Helpers.isPositiveInteger(address)) {
+      addressIndex = address;
+      address = this._getAccount(accountIndex)[address];
+    } else {
+<span class="cstat-no" title="statement not covered" >      addressIndex = this._getAccount(accountIndex).indexOf(address);</span>
+<span class="cstat-no" title="statement not covered" >      assert(Helpers.isPositiveInteger(addressIndex), 'Address not found');</span>
+    }
+&nbsp;
+    address.label = null;
+&nbsp;
+    // Remove from wallet:
+    this._wallet.hdwallet.accounts[accountIndex].removeLabel(addressIndex);
+&nbsp;
+    return this._syncWallet();
+  }
+&nbsp;
+  // options:
+  //   Int || null reusableIndex: allow reuse in case of the gap limit
+  reserveReceiveAddress (accountIndex, options = {}) {
+    assert(Helpers.isPositiveInteger(accountIndex), 'Account index required');
+    if (options.reusableIndex !== undefined) {
+      assert(
+        options.reusableIndex === null ||
+        Helpers.isPositiveInteger(options.reusableIndex),
+      'not an integer');
+    }
+&nbsp;
+    var self = this;
+    var account = this._wallet.hdwallet.accounts[accountIndex];
+&nbsp;
+    let receiveIndex = account.receiveIndex;
+    var originalLabel; // In case of address reuse
+&nbsp;
+    // Respect the GAP limit:
+    if (receiveIndex - account.lastUsedReceiveIndex &gt;= 20) {
+      receiveIndex = options.reusableIndex;
+      if (receiveIndex == null) throw new Error('gap_limit');
+      originalLabel = this.getLabel(accountIndex, receiveIndex);
+    }
+&nbsp;
+    var receiveAddress = account.receiveAddressAtIndex(receiveIndex);
+&nbsp;
+    //   String label: will be appended in case of reuse
+    function commitAddressLabel (label = '') {
+      if (originalLabel) label = `${originalLabel}, ${label}`;
+&nbsp;
+      self.setLabel(accountIndex, receiveIndex, label);
+    }
+&nbsp;
+    return {
+      receiveIndex: receiveIndex,
+      receiveAddress: receiveAddress,
+      commit: commitAddressLabel
+    };
+  }
+&nbsp;
+  releaseReceiveAddress (accountIndex, receiveIndex, options = {}) {
+    assert(Helpers.isPositiveInteger(accountIndex), 'Account index required');
+    assert(Helpers.isPositiveInteger(receiveIndex), 'Receive index required');
+&nbsp;
+    if (options.expectedLabel !== undefined) {
+      assert(
+        options.expectedLabel === null ||
+        Helpers.isString(options.expectedLabel),
+      'not a string');
+    }
+&nbsp;
+    let address = this.getAddress(accountIndex, receiveIndex);
+&nbsp;
+    if (options.expectedLabel) {
+      if (address.label.includes(options.expectedLabel)) {
+        const firstEntry = address.label.indexOf(options.expectedLabel) === 0;
+        this.setLabel(
+          accountIndex,
+          address,
+          firstEntry
+            ? address.label.replace(options.expectedLabel + ', ', '')
+            : address.label.replace(', ' + options.expectedLabel, '')
+        );
+      } else {
+        // Don't touch the label
+      }
+    } else {
+      // Remove label
+      this.removeLabel(accountIndex, address);
+    }
+  }
+}
+&nbsp;
+module.exports = Labels;
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Jul 05 2018 15:15:20 GMT+0300 (Turkey Standard Time)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>
